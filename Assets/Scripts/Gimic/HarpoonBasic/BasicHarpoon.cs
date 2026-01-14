@@ -49,6 +49,8 @@ public class BasicHarpoon : MonoBehaviour
 
             if (fishScript != null && fishScript.catchable == true)
             {
+                transform.Translate(Vector3.up * 0.7f);
+
                 isHit = true; // 작살 멈춤
 
                 // 1. 맞은 물고기 가져오기
