@@ -140,7 +140,11 @@ ScriptedImporter:
       width: 480
       height: 256
 <<<<<<< HEAD
+<<<<<<< HEAD
     spriteID: 402251dbaa11d3240a13776e5d02596a
+=======
+    spriteID: 431edbb604ba5fd4b83ce781241f5cc7
+>>>>>>> 8ae636a409a49e882bc1c29d40722532f4106152
 =======
     spriteID: 431edbb604ba5fd4b83ce781241f5cc7
 >>>>>>> 8ae636a409a49e882bc1c29d40722532f4106152
@@ -176,7 +180,11 @@ ScriptedImporter:
         width: 480
         height: 256
 <<<<<<< HEAD
+<<<<<<< HEAD
       spriteId: 402251dbaa11d3240a13776e5d02596a
+=======
+      spriteId: 431edbb604ba5fd4b83ce781241f5cc7
+>>>>>>> 8ae636a409a49e882bc1c29d40722532f4106152
 =======
       spriteId: 431edbb604ba5fd4b83ce781241f5cc7
 >>>>>>> 8ae636a409a49e882bc1c29d40722532f4106152
