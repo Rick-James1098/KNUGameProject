@@ -208,6 +208,48 @@ MonoBehaviour:
   clickTarget: {fileID: 6854336117591044203, guid: bf4fdd326afec8144b72e4734dc11bfa, type: 3}
   minPosition: {x: -7, y: -4}
   maxPosition: {x: 7, y: 3}
+  difficultyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0006215009
+      value: 1.5057373
+      inSlope: 4.405564
+      outSlope: 4.405564
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08304496
+    - serializedVersion: 3
+      time: 0.6668191
+      value: 3.0146375
+      inSlope: 5.457098
+      outSlope: 5.457098
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.86755204
+      value: 4.952456
+      inSlope: 7.8465266
+      outSlope: 7.8465266
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0010986
+      value: 10.016663
+      inSlope: 11.585592
+      outSlope: 11.585592
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051502943
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &989108713
 Transform:
   m_ObjectHideFlags: 0
