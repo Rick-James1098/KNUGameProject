@@ -1087,27 +1087,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StackGauge
   gaugeBlocks:
-  - {fileID: 1431541351}
-  - {fileID: 657360590}
-  - {fileID: 1325175193}
-  - {fileID: 1514426341}
-  - {fileID: 229020444}
-  - {fileID: 413164187}
-  - {fileID: 69337565}
-  - {fileID: 1899286581}
-  - {fileID: 1914499570}
-  - {fileID: 78845359}
-  - {fileID: 1887485026}
-  - {fileID: 1602978816}
-  - {fileID: 1119260150}
-  - {fileID: 1141246013}
-  - {fileID: 1318856468}
-  - {fileID: 2028779921}
-  - {fileID: 1340685296}
-  - {fileID: 472045132}
-  - {fileID: 1396485967}
   - {fileID: 1270841781}
-  chargeTimePerBlock: 0.2
+  - {fileID: 1396485967}
+  - {fileID: 472045132}
+  - {fileID: 1340685296}
+  - {fileID: 2028779921}
+  - {fileID: 1318856468}
+  - {fileID: 1141246013}
+  - {fileID: 1119260150}
+  - {fileID: 1602978816}
+  - {fileID: 1887485026}
+  - {fileID: 78845359}
+  - {fileID: 1914499570}
+  - {fileID: 1899286581}
+  - {fileID: 69337565}
+  - {fileID: 413164187}
+  - {fileID: 229020444}
+  - {fileID: 1514426341}
+  - {fileID: 1325175193}
+  - {fileID: 657360590}
+  - {fileID: 1431541351}
   targetLine: {fileID: 1032416}
   targetBlockIndex: 0
   harpoonPrefab: {fileID: 0}
@@ -2350,6 +2349,7 @@ MonoBehaviour:
   gauge: {fileID: 963678531}
   harpoonPrefab: {fileID: 3128249130153411682, guid: bae7f94effafbe24096315f4f3ad9b7f, type: 3}
   mainCamera: {fileID: 557122553}
+  isStarted: 1
 --- !u!4 &1984889369
 Transform:
   m_ObjectHideFlags: 0

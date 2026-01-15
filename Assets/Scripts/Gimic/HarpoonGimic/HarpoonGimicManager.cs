@@ -1,6 +1,7 @@
 using System.Runtime.Serialization;
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework;
 
 public class HarpoonGimicManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class HarpoonGimicManager : MonoBehaviour
 
     private GameObject currentFish;
     private GameObject currentHarpoon;
+    public bool isStarted = true;
 
     void Start()
     {
@@ -34,12 +36,17 @@ public class HarpoonGimicManager : MonoBehaviour
         // 4. 게이지에 작살 컨트롤러 넘겨주고, 목표 선 표시하기
         gauge.InitGame(harpoon, this);
         gauge.SetRandomTarget();
+
+        isStarted = true;
     }
 
     public void OnRoundFinished()
     {
-        // 바로 리셋하면 작살 날아가는 게 안 보이니 2초 뒤에 리셋
-        StartCoroutine(ResetGameRoutine());
+        if(isStarted == true)
+        {// 바로 리셋하면 작살 날아가는 게 안 보이니 2초 뒤에 리셋
+            StartCoroutine(ResetGameRoutine());
+            isStarted = false;
+        }
     }
 
     IEnumerator ResetGameRoutine()

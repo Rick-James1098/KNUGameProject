@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +8,14 @@ public class StackGauge : MonoBehaviour
     private HarpoonGimicManager gameManager; // 매니저에게 보고하기 위한 변수
     private Harpoon harpoon;
 
+    private bool isCharging = true;
+    private float chargeTimePerBlock = 0.1f;
+
     [Header("UI Objects")]
     public GameObject[] gaugeBlocks; // 유니티 에디터에서 블럭 이미지들을 순서대로 넣어주세요
 
     [Header("Settings")]
-    public float chargeTimePerBlock = 0.2f; // 블럭 하나가 켜지는 데 걸리는 시간
-    
+     // 블럭 하나가 켜지는 데 걸리는 시간
     private float currentTimer = 0.0f;
     private int currentBlockIndex = 0; // 현재 몇 번째 블럭까지 켜졌는지
 
@@ -30,11 +34,6 @@ public class StackGauge : MonoBehaviour
         targetBlockIndex = Random.Range(3, gaugeBlocks.Length);
 
         float calcY = startY + (targetBlockIndex * (blockHeight + spacing));
-
-        Debug.Log("Start Y: " + startY);
-        Debug.Log("targetBlockIndex: " + targetBlockIndex);
-        Debug.Log("blockHeight: " + blockHeight);
-        Debug.Log("calcY: " + calcY);
 
         targetLine.SetActive(true);
 
@@ -57,11 +56,12 @@ public class StackGauge : MonoBehaviour
         // 게이지 값 초기화
         currentTimer = 0;
         currentBlockIndex = 0;
+        chargeTimePerBlock = Random.Range(0.01f, 0.2f);
     }
     void Update()
     {
         // 1. 마우스 누르는 중
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && isCharging)
         {
             Charge();
         }
@@ -69,6 +69,7 @@ public class StackGauge : MonoBehaviour
         // 2. 마우스 뗐을 때 (초기화 또는 발사)
         if (Input.GetMouseButtonUp(0))
         {
+            isCharging = false;
             // 여기에 발사 로직 추가 가능
             CheckSuccess();
         }
@@ -98,12 +99,10 @@ public class StackGauge : MonoBehaviour
 
     void CheckSuccess()
     {
-        Debug.Log("TargetBlockIndex: " + targetBlockIndex);
-        Debug.Log("CurrentBlockIndex: " + currentBlockIndex);
         // 정확히 목표 칸에 멈췄는지 확인
         bool isSuccess = (currentBlockIndex == targetBlockIndex); // +1은 인덱스 차이 보정
 
-        if (harpoon != null)
+        if (harpoon != null && gameManager.isStarted == true)
         {
             harpoon.Shoot(isSuccess);
         }
@@ -130,5 +129,6 @@ public class StackGauge : MonoBehaviour
 
         currentBlockIndex = 0;
         currentTimer = 0;
+        isCharging = true;
     }
 }

@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class Harpoon : MonoBehaviour
@@ -25,13 +26,14 @@ public class Harpoon : MonoBehaviour
     public void Shoot(bool success)
     {
         isSuccess = success;
-        isLaunched = true;
         
         // 성공이면 물고기를 향해, 실패면 빗나가게(약간 위로 회전)
-        if (!success)
+        if (!success && isLaunched == false)
         {
             transform.Rotate(0, 0, 15); // 15도 정도 빗나가게 회전
         }
+
+        isLaunched = true;
     }
 
     void Update()
@@ -45,7 +47,7 @@ public class Harpoon : MonoBehaviour
             if(!GetComponent<Renderer>().isVisible) Destroy(gameObject, 2f);
             
             float distance = Vector3.Distance(transform.position, targetFish.position);
-            if (distance <= 0.01f)
+            if (distance <= 0.02f)
             {
                 isLaunched = false;
             }
