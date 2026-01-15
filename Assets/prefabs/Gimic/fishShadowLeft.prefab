@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dbc70992f10540808469ef4eba2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishShadow
-  speed: 5
+  speed: 10
   catchable: 0
   spriteRenderer: {fileID: 1707415888756474248}
   leftSprite: {fileID: -1263593645629870729, guid: f6c3e04b20a4870478e0c534e167e7b5, type: 3}
@@ -115,7 +115,7 @@ MonoBehaviour:
   rightMarkOffset: {x: 0.1, y: 0.1, z: 0}
   moveDurationMin: 2
   moveDurationMax: 5
-  stopDuration: 1
+  stopDuration: 0.5
 --- !u!60 &5078782425575192325
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0.5}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2, y: 0.88}
     newSize: {x: 2, y: 0.88}
     adaptiveTilingThreshold: 0.5
@@ -244,7 +244,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0.5}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2, y: 0.88}
     newSize: {x: 2, y: 0.88}
     adaptiveTilingThreshold: 0.5
