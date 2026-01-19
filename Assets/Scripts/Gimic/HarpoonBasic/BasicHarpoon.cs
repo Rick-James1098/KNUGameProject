@@ -10,6 +10,9 @@ public class BasicHarpoon : MonoBehaviour
     private bool isFired = false;
     private bool isHit = false;
 
+    [Header("Effects")]
+    public GameObject hitEffect; 
+
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +21,7 @@ public class BasicHarpoon : MonoBehaviour
             float input = Input.GetAxis("Horizontal"); 
             currentZ -= input * rotateSpeed * Time.deltaTime;
             currentZ = Mathf.Clamp(currentZ, minAngle, maxAngle);
-            transform.rotation = Quaternion.Euler(0, 0, currentZ);
+            transform.rotation = Quaternion.Euler(0, 0, -currentZ);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -29,7 +32,7 @@ public class BasicHarpoon : MonoBehaviour
         {
             if(isHit == false)
             {
-                transform.Translate(Vector3.up * shotSpeed * Time.deltaTime);
+                transform.Translate(Vector3.down * shotSpeed * Time.deltaTime);
 
                 if (Mathf.Abs(transform.position.y) > 4f || Mathf.Abs(transform.position.x) > 7.5f || Mathf.Abs(transform.position.x) < -7.5f)
                 {
@@ -49,7 +52,16 @@ public class BasicHarpoon : MonoBehaviour
 
             if (fishScript != null && fishScript.catchable == true)
             {
-                transform.Translate(Vector3.up * 0.7f);
+                if (hitEffect != null)
+                {
+                    // "물고기(other)의 표면 중, 내(작살) 위치와 가장 가까운 점"을 찾음
+                    Vector3 hitPoint = other.ClosestPoint(transform.position);
+                    hitPoint.y -= 0.5f;
+
+                    // 피 생성! (회전은 기본값 혹은 작살 반대 방향 등 취향껏)
+                    Instantiate(hitEffect, hitPoint, Quaternion.identity);
+                }
+                transform.Translate(Vector3.down * 1f);
 
                 isHit = true; // 작살 멈춤
 

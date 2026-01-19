@@ -8,6 +8,9 @@ public class Harpoon : MonoBehaviour
     private bool isSuccess = false;
     public float speed = 15f;
 
+    [Header("Effects")]
+    public GameObject hitEffect; // [추가] 피 이펙트 프리팹 연결
+
     public void Setup(Transform fish, Camera cam)
     {
         targetFish = fish;
@@ -49,6 +52,11 @@ public class Harpoon : MonoBehaviour
             float distance = Vector3.Distance(transform.position, targetFish.position);
             if (distance <= 0.02f)
             {
+                Vector3 hitPoint = new Vector3(targetFish.position.x - 0.5f, targetFish.position.y - 0.2f, 0);
+                if (hitEffect != null)
+                {
+                    Instantiate(hitEffect, hitPoint, Quaternion.identity);
+                }
                 isLaunched = false;
             }
         }

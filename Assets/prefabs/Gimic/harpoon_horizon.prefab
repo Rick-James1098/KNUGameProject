@@ -86,3 +86,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Harpoon
   speed: 15
+  hitEffect: {fileID: 2288104358047461311, guid: a256532c11265994b9418083f47e9bd9, type: 3}
