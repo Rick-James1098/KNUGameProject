@@ -1,10 +1,16 @@
+using System.Numerics;
 using NUnit.Framework;
 using Unity.Multiplayer.PlayMode;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Vector3 = UnityEngine.Vector3; 
+using Vector2 = UnityEngine.Vector2; 
+using Quaternion = UnityEngine.Quaternion;
+
 public class FishingSystem : MonoBehaviour
 {
+    public Transform rodTip;
     private bool isFishing = false;
     private TopDownBobber currentBobber;
     private PlayerMovement moveScript;
@@ -18,9 +24,15 @@ public class FishingSystem : MonoBehaviour
     private float currentPower = 0f;   // 현재 모인 힘 (0 ~ 1)
     private bool isCharging = false;   // 기 모으는 중인가?
 
+    public LineRenderer fishingLine;
+
     void Awake()
     {
         moveScript = GetComponent<PlayerMovement>();
+        if (fishingLine != null)
+        {
+            fishingLine.enabled = false;
+        }
     }
 
     void Update()
@@ -28,6 +40,9 @@ public class FishingSystem : MonoBehaviour
 
         if (isFishing)
         {
+
+            UpdateFishingLine();
+
             if (Input.GetMouseButton(0))
             {
                 RetrieveFishing();
@@ -61,11 +76,29 @@ public class FishingSystem : MonoBehaviour
         }
     }
 
+    void UpdateFishingLine()
+    {
+        if  (currentBobber != null && fishingLine != null)
+        {
+            Vector3 start = rodTip.position;
+            Vector3 end = currentBobber.visualChild.position;
+
+            
+            fishingLine.SetPosition(0, start);
+            fishingLine.SetPosition(1, end);
+        }
+    }
+
     // FishingSystem.cs 내부의 함수 수정
     void ThrowBobber()
     {
         isFishing = true;
         moveScript.canMove = false;
+
+        if (fishingLine != null)
+        {
+            fishingLine.enabled = true;
+        }
         // 1. 찌 생성
         GameObject bobber = Instantiate(bobberPrefab, throwPoint.position, Quaternion.identity);
         currentBobber = bobber.GetComponent<TopDownBobber>();
@@ -73,6 +106,7 @@ public class FishingSystem : MonoBehaviour
         currentBobber.Launch(moveScript.lastDir, currentPower);
         // 2. 찌에 붙어있는 'TopDownBobber' 스크립트를 가져옴
         TopDownBobber bobberScript = bobber.GetComponent<TopDownBobber>();
+
 
         if (bobberScript != null)
         {
@@ -97,9 +131,14 @@ public class FishingSystem : MonoBehaviour
 
     public void ResetFishingState()
     {
+        if (fishingLine != null)
+        {
+            fishingLine.enabled = false;
+        }
         isFishing = false;
         currentBobber = null;
         moveScript.canMove = true;
+        
         Debug.Log("낚시 종료, 이동 가능");
     }
 }
