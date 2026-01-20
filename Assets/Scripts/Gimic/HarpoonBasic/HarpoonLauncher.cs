@@ -7,7 +7,7 @@ public class HarpoonLauncher : MonoBehaviour
     private bool isRespawning = false;
 
     // 생성 위치 (변수로 빼두면 관리하기 편합니다)
-    private Vector3 spawnPos = new Vector3(0, -4f, 0);
+    private Vector3 spawnPos = new Vector3(0, 4f, 0);
 
     [SerializeField]
     private GameObject harpoon;

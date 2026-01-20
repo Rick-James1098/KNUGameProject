@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f6c3e04b20a4870478e0c534e167e7b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6149693
+      value: -1.5898412
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f6c3e04b20a4870478e0c534e167e7b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4751778
+      value: 0.5288898
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f6c3e04b20a4870478e0c534e167e7b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dbc70992f10540808469ef4eba2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishShadow
-  speed: 10
+  speed: 8
   catchable: 0
   spriteRenderer: {fileID: 1707415888756474248}
   leftSprite: {fileID: -1263593645629870729, guid: f6c3e04b20a4870478e0c534e167e7b5, type: 3}
@@ -111,8 +111,8 @@ MonoBehaviour:
   leftCollider: {fileID: 5078782425575192325}
   rightCollider: {fileID: -2970991886149738263}
   surpriseMark: {fileID: 8100298293272159119, guid: 12ee72d7314891f479bfa162a4a5c4f9, type: 3}
-  leftMarkOffset: {x: -0.1, y: 0.1, z: 0}
-  rightMarkOffset: {x: 0.1, y: 0.1, z: 0}
+  leftMarkOffset: {x: -1.2, y: 0.2, z: 0}
+  rightMarkOffset: {x: 0.2, y: 0.2, z: 0}
   moveDurationMin: 2
   moveDurationMax: 5
   stopDuration: 0.5
@@ -162,23 +162,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.8294461, y: 0.47392285}
-      - {x: 0.46293157, y: 0.3826707}
-      - {x: 0.19999999, y: 0.2686646}
-      - {x: -0.028664827, y: 0.09120491}
-      - {x: -0.017198801, y: -0.1658634}
-      - {x: 0.04, y: -0.19999999}
-      - {x: 0.48677564, y: -0.35509342}
-      - {x: 0.7951157, y: -0.45145118}
-      - {x: 0.9007735, y: -0.46176946}
-      - {x: 1.4790986, y: -0.38078487}
-      - {x: 1.5120394, y: -0.37617195}
-      - {x: 1.8969377, y: -0.3368072}
-      - {x: 1.9426708, y: -0.27413648}
-      - {x: 1.9770687, y: -0.13308609}
-      - {x: 2.0242598, y: 0.14199317}
-      - {x: 1.994267, y: 0.3141366}
-      - {x: 1.5825402, y: 0.4228012}
+    - - {x: 0.4015097, y: 0.4244337}
+      - {x: -0.24447352, y: 0.46418244}
+      - {x: -0.79269606, y: 0.277398}
+      - {x: -1.0242721, y: 0.14069411}
+      - {x: -1.0162551, y: -0.17838997}
+      - {x: -0.21326861, y: -0.4590907}
+      - {x: 0.119972944, y: -0.45116076}
+      - {x: 0.5062545, y: -0.337917}
+      - {x: 0.6706062, y: -0.33838078}
+      - {x: 0.9238495, y: -0.33570054}
+      - {x: 0.9900105, y: -0.24803758}
+      - {x: 1.0083117, y: -0.061756223}
+      - {x: 1.0258343, y: 0.07849294}
+      - {x: 1.0249695, y: 0.14901742}
+      - {x: 1.0333711, y: 0.2548346}
+      - {x: 0.98574674, y: 0.31061026}
+      - {x: 0.7820714, y: 0.38401192}
   m_UseDelaunayMesh: 1
 --- !u!50 &4677212547282690613
 Rigidbody2D:
@@ -254,6 +254,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.70186657, y: 0.46131462}
+      - {x: -1.5816056, y: 0.41557306}
       - {x: -1.6974387, y: 0.40955037}
       - {x: -1.941315, y: 0.3321796}
       - {x: -2, y: 0.28}

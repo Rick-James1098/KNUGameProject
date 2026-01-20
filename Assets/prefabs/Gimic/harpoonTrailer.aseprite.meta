@@ -129,8 +129,8 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: anglegi
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.49230766, y: -0.93939394}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -168,7 +168,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 16
-        y: 47
+        y: 31
         width: 65
         height: 33
       spriteId: 5ee4778315520db4f8a5f54ac61ee08d

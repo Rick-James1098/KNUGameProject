@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cae16f03376b89b40afea597a32966d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.008709073
+      value: -3.5554533
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cae16f03376b89b40afea597a32966d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.016181
+      value: 1.1045408
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cae16f03376b89b40afea597a32966d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicHarpoon
   rotateSpeed: 300
   shotSpeed: 30
+  hitEffect: {fileID: 2288104358047461311, guid: a256532c11265994b9418083f47e9bd9, type: 3}
 --- !u!61 &2356031964284552261
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123,17 +124,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.006497234, y: 1.834895}
+  m_Offset: {x: -0.004000187, y: -1.827533}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 1}
     oldSize: {x: 0.28125, y: 2}
     newSize: {x: 0.28125, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.34622234, y: 0.39518237}
+  m_Size: {x: 0.35325336, y: 0.44093847}
   m_EdgeRadius: 0
 --- !u!50 &-1529023572459637338
 Rigidbody2D:
