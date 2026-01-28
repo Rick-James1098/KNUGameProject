@@ -73,6 +73,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        if (transform.parent != null) 
+        {
+            Vector3 parentScale = transform.parent.localScale;
+            
+            // 부모 스케일의 절대값을 이용해 자식(UI)의 스케일을 보정
+            transform.localScale = new Vector3(
+                Mathf.Abs(transform.localScale.x), 
+                transform.localScale.y, 
+                transform.localScale.z
+            );
+        }
+    }
+
     void FixedUpdate()
     {
         if (!canMove) 

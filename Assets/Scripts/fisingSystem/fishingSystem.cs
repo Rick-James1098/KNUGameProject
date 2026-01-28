@@ -13,7 +13,7 @@ public class FishingSystem : MonoBehaviour
     public Transform rodTip;
     private bool isFishing = false;
     private TopDownBobber currentBobber;
-    private PlayerMovement moveScript;
+    public PlayerMovement moveScript;
     public GameObject bobberPrefab;    // 찌 프리팹
     public Transform throwPoint;       // 찌가 나가는 위치 (캐릭터 손 근처)
     public Slider powerSlider;         // 1단계에서 만든 슬라이더
