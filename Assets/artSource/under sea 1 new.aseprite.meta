@@ -1,8 +1,13 @@
 fileFormatVersion: 2
-guid: aada9bcd1c314f14abb6c8908897c20d
+guid: 64dbde88b6827a644844b6e854bf75af
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: under sea 1 new_Clip
+    second: {fileID: 7400000, guid: 54f2593e45feb51499cbde72707e1ee1, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -36,7 +41,11 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
     spritePixelsToUnits: 100
+=======
+    spritePixelsToUnits: 32
+>>>>>>> dev/psh
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -102,7 +111,11 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
+<<<<<<< HEAD
   platformSettingsDirtyTick: 0
+=======
+  platformSettingsDirtyTick: 639052942903217952
+>>>>>>> dev/psh
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -139,7 +152,11 @@ ScriptedImporter:
       y: 4
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: 0d048480115d50843a3f145e161eb9b8
+=======
+    spriteID: 303fe1e5fb0b56a46ab358f10bf4bb30
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -160,7 +177,11 @@ ScriptedImporter:
       y: 268
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: 987b2c657ea40794c8904672b9e0869e
+=======
+    spriteID: 2b2a8dfeac235944fae202c30a2ac90c
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,7 +202,11 @@ ScriptedImporter:
       y: 532
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: ff0b3927aabbe9f47a3cab8486b539f8
+=======
+    spriteID: a82ad0f305a4e584bb332ce8643683b6
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,7 +227,11 @@ ScriptedImporter:
       y: 796
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: 0dc405991f47e904f97ad047869a4a8a
+=======
+    spriteID: 6328b491d5e166944b0926787a0679a6
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -223,7 +252,11 @@ ScriptedImporter:
       y: 1060
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: 30ee864ee4f078c4b843a430f144e192
+=======
+    spriteID: 0e800cad287629942bf704ef5000f94a
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -244,7 +277,11 @@ ScriptedImporter:
       y: 1324
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: 21d0de83311724b49ab86140edf3fabd
+=======
+    spriteID: 53aa98283a977af43b8c026804dde2b1
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -265,7 +302,11 @@ ScriptedImporter:
       y: 1588
       width: 480
       height: 256
+<<<<<<< HEAD
     spriteID: b792c652a53eae44f9fddbbc84136017
+=======
+    spriteID: 38640cb77fdec4045a2201a73771b728
+>>>>>>> dev/psh
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -297,7 +338,11 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: 0d048480115d50843a3f145e161eb9b8
+=======
+      spriteId: 303fe1e5fb0b56a46ab358f10bf4bb30
+>>>>>>> dev/psh
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -306,7 +351,11 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: 987b2c657ea40794c8904672b9e0869e
+=======
+      spriteId: 2b2a8dfeac235944fae202c30a2ac90c
+>>>>>>> dev/psh
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -315,7 +364,11 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: ff0b3927aabbe9f47a3cab8486b539f8
+=======
+      spriteId: a82ad0f305a4e584bb332ce8643683b6
+>>>>>>> dev/psh
     - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
@@ -324,7 +377,11 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: 0dc405991f47e904f97ad047869a4a8a
+=======
+      spriteId: 6328b491d5e166944b0926787a0679a6
+>>>>>>> dev/psh
     - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -333,7 +390,11 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: 30ee864ee4f078c4b843a430f144e192
+=======
+      spriteId: 0e800cad287629942bf704ef5000f94a
+>>>>>>> dev/psh
     - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
@@ -342,7 +403,11 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: 21d0de83311724b49ab86140edf3fabd
+=======
+      spriteId: 53aa98283a977af43b8c026804dde2b1
+>>>>>>> dev/psh
     - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
@@ -351,13 +416,57 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
+<<<<<<< HEAD
       spriteId: b792c652a53eae44f9fddbbc84136017
+=======
+      spriteId: 38640cb77fdec4045a2201a73771b728
+>>>>>>> dev/psh
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
   tileSets: []
+<<<<<<< HEAD
   platformSettings: []
+=======
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+>>>>>>> dev/psh
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 

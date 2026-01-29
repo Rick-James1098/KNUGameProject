@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 14e2fe87be61a7048bbb93496c77db8e
+guid: 87610815783074c46bb37ff9b607dcb5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: deck side 1
+  - name: jacsal level 1
     originalName: 
-    pivot: {x: 0.4181818, y: -0.017857144}
+    pivot: {x: 0.5, y: -0.071428575}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,13 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 55
-      height: 56
-<<<<<<< HEAD
-    spriteID: f65ae03694776064593731c570308089
-=======
-    spriteID: ca64479a398c8b742a6311699c25955e
->>>>>>> dev/psh
+      width: 28
+      height: 28
+    spriteID: 244b4b3ed685f1345b3868e4461a9b4b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -157,29 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1589445867
+      value0: 207045817
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: deck side 1
+    name: jacsal level 1
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: deck side 1
+    - name: jacsal level 1
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 9
-        y: 1
-        width: 55
-        height: 56
-<<<<<<< HEAD
-      spriteId: f65ae03694776064593731c570308089
-=======
-      spriteId: ca64479a398c8b742a6311699c25955e
->>>>>>> dev/psh
+        x: 2
+        y: 2
+        width: 28
+        height: 28
+      spriteId: 244b4b3ed685f1345b3868e4461a9b4b
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -189,5 +181,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
+  canvasSize: {x: 32, y: 32}
   previousTextureSize: {x: 64, y: 64}
