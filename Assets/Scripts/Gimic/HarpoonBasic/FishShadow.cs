@@ -25,6 +25,8 @@ public class FishShadow : MonoBehaviour
     public float moveDurationMin = 2.0f; // 최소 이만큼은 움직이다가 멈춤
     public float moveDurationMax = 5.0f; // 최대 이만큼 움직이다가 멈춤
     public float stopDuration = 1.0f;
+    public GameObject leftRipple;   // 왼쪽 볼 때 켜질 녀석
+    public GameObject rightRipple;  // 오른쪽 볼 때 켜질 녀석
 
     public void Setup(PolygonCollider2D area)
     {   
@@ -59,6 +61,9 @@ public class FishShadow : MonoBehaviour
                 currentTimer += Time.deltaTime;
                 yield return null; // 한 프레임 대기
             }
+
+            if (leftRipple != null) leftRipple.SetActive(false);
+            if (rightRipple != null) rightRipple.SetActive(false);
 
             catchable = true; // 작살 맞기 가능
 
@@ -122,6 +127,9 @@ public class FishShadow : MonoBehaviour
 
                 if (rightCollider != null) rightCollider.enabled = true;
                 if (leftCollider != null) leftCollider.enabled = false;
+
+                if (rightRipple != null) rightRipple.SetActive(true);
+                if (leftRipple != null) leftRipple.SetActive(false);
             }
         }
         // 목적지가 내 왼쪽이면
@@ -133,6 +141,9 @@ public class FishShadow : MonoBehaviour
 
                 if (leftCollider != null) leftCollider.enabled = true;
                 if (rightCollider != null) rightCollider.enabled = false;
+
+                if (leftRipple != null) leftRipple.SetActive(true);
+                if (rightRipple != null) rightRipple.SetActive(false);
             }
         }
     }
@@ -143,6 +154,9 @@ public class FishShadow : MonoBehaviour
         StopAllCoroutines(); // 모든 움직임 정지
         catchable = false;   // 더 이상 맞지 않음
 
+        if (leftRipple != null) leftRipple.SetActive(false);
+        if (rightRipple != null) rightRipple.SetActive(false);
+        
         // 자식 오브젝트(느낌표 등) 정리
         foreach (Transform child in transform)
         {
