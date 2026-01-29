@@ -172,9 +172,21 @@ PrefabInstance:
       value: seaBackground
       objectReference: {fileID: 0}
     - target: {fileID: 6637303215344939988, guid: 74dfc0640ca161d4c8c3e010bde391e4, type: 3}
+      propertyPath: m_Size.x
+      value: 4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637303215344939988, guid: 74dfc0640ca161d4c8c3e010bde391e4, type: 3}
+      propertyPath: m_Size.y
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637303215344939988, guid: 74dfc0640ca161d4c8c3e010bde391e4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 3211991419569149680, guid: 64dbde88b6827a644844b6e854bf75af, type: 3}
+      objectReference: {fileID: -7952877128390940472, guid: 64dbde88b6827a644844b6e854bf75af, type: 3}
+    - target: {fileID: 6637303215344939988, guid: 74dfc0640ca161d4c8c3e010bde391e4, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -198,7 +210,7 @@ Animator:
   m_GameObject: {fileID: 105976930}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 92b82dc49bd9a4f45b725226affcf3cd, type: 2}
+  m_Controller: {fileID: -7628949362763795883, guid: 64dbde88b6827a644844b6e854bf75af, type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

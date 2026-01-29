@@ -139,11 +139,7 @@ ScriptedImporter:
       y: 4
       width: 55
       height: 56
-<<<<<<< HEAD
-    spriteID: f65ae03694776064593731c570308089
-=======
-    spriteID: ca64479a398c8b742a6311699c25955e
->>>>>>> dev/psh
+    spriteID: 5aec5a93475f89e4f83e77b221342802
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -175,11 +171,7 @@ ScriptedImporter:
         y: 1
         width: 55
         height: 56
-<<<<<<< HEAD
-      spriteId: f65ae03694776064593731c570308089
-=======
-      spriteId: ca64479a398c8b742a6311699c25955e
->>>>>>> dev/psh
+      spriteId: 5aec5a93475f89e4f83e77b221342802
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

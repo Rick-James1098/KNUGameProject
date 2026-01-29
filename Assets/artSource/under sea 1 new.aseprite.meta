@@ -41,11 +41,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-    spritePixelsToUnits: 100
-=======
     spritePixelsToUnits: 32
->>>>>>> dev/psh
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -111,11 +107,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-<<<<<<< HEAD
-  platformSettingsDirtyTick: 0
-=======
-  platformSettingsDirtyTick: 639052942903217952
->>>>>>> dev/psh
+  platformSettingsDirtyTick: 639052963487827371
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -152,11 +144,7 @@ ScriptedImporter:
       y: 4
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: 0d048480115d50843a3f145e161eb9b8
-=======
-    spriteID: 303fe1e5fb0b56a46ab358f10bf4bb30
->>>>>>> dev/psh
+    spriteID: 62453f27500f6274f9031b07167af0c3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -177,11 +165,7 @@ ScriptedImporter:
       y: 268
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: 987b2c657ea40794c8904672b9e0869e
-=======
-    spriteID: 2b2a8dfeac235944fae202c30a2ac90c
->>>>>>> dev/psh
+    spriteID: f81e41ef2622d354da92cd7c58e2aec9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,11 +186,7 @@ ScriptedImporter:
       y: 532
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: ff0b3927aabbe9f47a3cab8486b539f8
-=======
-    spriteID: a82ad0f305a4e584bb332ce8643683b6
->>>>>>> dev/psh
+    spriteID: 3db6483d8dbae2143b4c7f44a77c5958
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -227,11 +207,7 @@ ScriptedImporter:
       y: 796
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: 0dc405991f47e904f97ad047869a4a8a
-=======
-    spriteID: 6328b491d5e166944b0926787a0679a6
->>>>>>> dev/psh
+    spriteID: 1b0d05b8241f29f418c92956222f2e76
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,11 +228,7 @@ ScriptedImporter:
       y: 1060
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: 30ee864ee4f078c4b843a430f144e192
-=======
-    spriteID: 0e800cad287629942bf704ef5000f94a
->>>>>>> dev/psh
+    spriteID: 227737b04b1544944ad2b2ac44243393
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -277,11 +249,7 @@ ScriptedImporter:
       y: 1324
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: 21d0de83311724b49ab86140edf3fabd
-=======
-    spriteID: 53aa98283a977af43b8c026804dde2b1
->>>>>>> dev/psh
+    spriteID: 7f33b32f1491fd448bc0a9dba436230e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -302,11 +270,7 @@ ScriptedImporter:
       y: 1588
       width: 480
       height: 256
-<<<<<<< HEAD
-    spriteID: b792c652a53eae44f9fddbbc84136017
-=======
-    spriteID: 38640cb77fdec4045a2201a73771b728
->>>>>>> dev/psh
+    spriteID: 7a3e6bf410acda2438f96003dd42a30e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -338,11 +302,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: 0d048480115d50843a3f145e161eb9b8
-=======
-      spriteId: 303fe1e5fb0b56a46ab358f10bf4bb30
->>>>>>> dev/psh
+      spriteId: 62453f27500f6274f9031b07167af0c3
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -351,11 +311,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: 987b2c657ea40794c8904672b9e0869e
-=======
-      spriteId: 2b2a8dfeac235944fae202c30a2ac90c
->>>>>>> dev/psh
+      spriteId: f81e41ef2622d354da92cd7c58e2aec9
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -364,11 +320,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: ff0b3927aabbe9f47a3cab8486b539f8
-=======
-      spriteId: a82ad0f305a4e584bb332ce8643683b6
->>>>>>> dev/psh
+      spriteId: 3db6483d8dbae2143b4c7f44a77c5958
     - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
@@ -377,11 +329,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: 0dc405991f47e904f97ad047869a4a8a
-=======
-      spriteId: 6328b491d5e166944b0926787a0679a6
->>>>>>> dev/psh
+      spriteId: 1b0d05b8241f29f418c92956222f2e76
     - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -390,11 +338,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: 30ee864ee4f078c4b843a430f144e192
-=======
-      spriteId: 0e800cad287629942bf704ef5000f94a
->>>>>>> dev/psh
+      spriteId: 227737b04b1544944ad2b2ac44243393
     - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
@@ -403,11 +347,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: 21d0de83311724b49ab86140edf3fabd
-=======
-      spriteId: 53aa98283a977af43b8c026804dde2b1
->>>>>>> dev/psh
+      spriteId: 7f33b32f1491fd448bc0a9dba436230e
     - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
@@ -416,19 +356,12 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 256
-<<<<<<< HEAD
-      spriteId: b792c652a53eae44f9fddbbc84136017
-=======
-      spriteId: 38640cb77fdec4045a2201a73771b728
->>>>>>> dev/psh
+      spriteId: 7a3e6bf410acda2438f96003dd42a30e
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
   tileSets: []
-<<<<<<< HEAD
-  platformSettings: []
-=======
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0
@@ -466,7 +399,6 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
->>>>>>> dev/psh
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 

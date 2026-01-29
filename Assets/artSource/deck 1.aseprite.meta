@@ -36,11 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-    spritePixelsToUnits: 32
-=======
     spritePixelsToUnits: 100
->>>>>>> dev/psh
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -106,11 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-<<<<<<< HEAD
-  platformSettingsDirtyTick: 639045271659873674
-=======
   platformSettingsDirtyTick: 0
->>>>>>> dev/psh
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -147,11 +139,7 @@ ScriptedImporter:
       y: 4
       width: 49
       height: 62
-<<<<<<< HEAD
-    spriteID: 79b780eaf2c29414ca2d3a9d4ac95d97
-=======
-    spriteID: af7aefde345f18e4da54be8cf6a79f84
->>>>>>> dev/psh
+    spriteID: a1d6be3b249d0a143835778c7dd9f4b0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -183,57 +171,13 @@ ScriptedImporter:
         y: 2
         width: 49
         height: 62
-<<<<<<< HEAD
-      spriteId: 79b780eaf2c29414ca2d3a9d4ac95d97
-=======
-      spriteId: af7aefde345f18e4da54be8cf6a79f84
->>>>>>> dev/psh
+      spriteId: a1d6be3b249d0a143835778c7dd9f4b0
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
   tileSets: []
-<<<<<<< HEAD
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 16384
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 16384
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 16384
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-=======
   platformSettings: []
->>>>>>> dev/psh
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
