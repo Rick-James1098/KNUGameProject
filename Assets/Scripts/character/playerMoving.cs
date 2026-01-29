@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
             // 주의: 유저님의 원래 스프라이트가 '왼쪽'을 보고 있다면 h > 0 ? -1 : 1 로 설정하세요.
             float direction = (h > 0) ? -1f : 1f; 
             transform.localScale = new Vector3(direction, 1, 1);
+        } else if (v != 0)
+        {
+            transform.localScale = new Vector3(-1f, 1, 1);
         }
 
         // 2. 대각선 이동 방지 로직
