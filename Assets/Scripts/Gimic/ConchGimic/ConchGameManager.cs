@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ConchGameManager : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class ConchGameManager : MonoBehaviour
     private bool isPlaying = false;  // 게임 진행 중인지 여부
     private float difficulty = 10f;
     private float count = 0f;
+
+    [Header("Score Effect")]
+    // [변경] 프리팹 하나가 아니라, 여러 개를 담을 배열로 선언합니다.
+    public GameObject[] scorePrefabs; 
+    public GameObject donePrefab;
+    
+    public Vector3 effectOffset = new Vector3(0.5f, 0.5f, 0);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,11 +67,53 @@ public class ConchGameManager : MonoBehaviour
         tab.GetComponent<TabController>().Setup(this, difficulty);
     }
 
-    public void OnClicked()
+    public void OnClicked(Vector3 pos)
     {   
         count++;
         Debug.Log(count);
-        SpawnTarget();
+
+        int prefabIndex = (int)count - 1;
+
+        if (scorePrefabs != null && prefabIndex < scorePrefabs.Length)
+        {
+            GameObject prefabToSpawn = scorePrefabs[prefabIndex];
+
+            if (prefabToSpawn != null)
+            {
+                Vector3 spawnPos = pos + effectOffset;
+                Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+            }
+        }
+
+        if (count >= 12)
+        {
+            GameClear(); // 승리!
+        }
+        else
+        {
+            SpawnTarget(); 
+        }
+    }
+
+    void GameClear()
+    {
+        isPlaying = false; // 게임 정지 (클릭 막음, 타이머 멈춤)
+
+        // 1. 남은 드럼 싹 지우기 (깔끔하게)
+        TabController[] activeDrums = FindObjectsOfType<TabController>();
+        foreach (TabController drum in activeDrums)
+        {
+            Destroy(drum.gameObject);
+        }
+
+        // 2. DONE 프리팹 소환!
+        if (donePrefab != null)
+        {
+            // 화면 중앙(0,0,0)에 생성 (카메라 위치에 따라 조절 필요하면 new Vector3(0, 0, 0) 수정)
+            Instantiate(donePrefab, Vector3.zero, Quaternion.identity);
+        }
+        
+        // 여기에 이후 씬 전환이나 버튼 활성화 코드 추가 가능
     }
 
     public void OnMissed()

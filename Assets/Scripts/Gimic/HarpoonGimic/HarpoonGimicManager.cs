@@ -40,10 +40,25 @@ public class HarpoonGimicManager : MonoBehaviour
         isStarted = true;
     }
 
+    public void StopCurrentFish()
+    {
+        if (currentFish != null)
+        {
+            FishMovement movement = currentFish.GetComponent<FishMovement>();
+            if (movement != null)
+            {
+                movement.StopMoving();
+            }
+        }
+    }
+
     public void OnRoundFinished()
     {
         if(isStarted == true)
-        {// 바로 리셋하면 작살 날아가는 게 안 보이니 2초 뒤에 리셋
+        {
+            StopCurrentFish();
+            
+            // 바로 리셋하면 작살 날아가는 게 안 보이니 2초 뒤에 리셋
             StartCoroutine(ResetGameRoutine());
             isStarted = false;
         }

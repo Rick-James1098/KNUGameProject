@@ -70,6 +70,7 @@ public class StackGauge : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isCharging = false;
+
             // 여기에 발사 로직 추가 가능
             CheckSuccess();
         }

@@ -296,6 +296,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  scorePrefabs:
+  - {fileID: 2140944320644201908, guid: 0ff3301dba6e5e54aa483a74e7aa8f52, type: 3}
+  - {fileID: 5105736261436439789, guid: a4cdf2e8aabe9b047b99ba79c9b4133d, type: 3}
+  - {fileID: 3905413863295622812, guid: f7cf90502380c4d409ba28514caffb44, type: 3}
+  - {fileID: 8636286597808331042, guid: 2bc7bd288b4a9cc45b465652aed96c88, type: 3}
+  - {fileID: 8304443714852466361, guid: c1bfc349365e95c4c83b11ed0caf008b, type: 3}
+  - {fileID: 353709151898067223, guid: 7e071ebd16b1c2b429790ad52edc1470, type: 3}
+  - {fileID: 2139606171117788601, guid: e3684d4bdd704f1468eb6685fa96f05e, type: 3}
+  - {fileID: 1714541770126298658, guid: 1737caf7a84b3b4439540b22af4fe0ad, type: 3}
+  - {fileID: 7053447091417444238, guid: 7bf3419fae737284282111c7c22da396, type: 3}
+  - {fileID: 3004284059419969281, guid: e4e9aacda74da2a4cabb1fddb17e72a2, type: 3}
+  - {fileID: 9002451586678397962, guid: cd79b87b7ee7aa2418de1f00fa53b191, type: 3}
+  - {fileID: 6249650050621720961, guid: 3412e6e4b6eac4b4691715f1a22dfff1, type: 3}
+  donePrefab: {fileID: 1418312722271909757, guid: 88a08fd647f9c6c4d8a1d1bc6dce9364, type: 3}
+  effectOffset: {x: 0.5, y: 0.5, z: 0}
 --- !u!4 &989108713
 Transform:
   m_ObjectHideFlags: 0
