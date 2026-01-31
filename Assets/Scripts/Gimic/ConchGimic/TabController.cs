@@ -30,7 +30,7 @@ public class TabController : MonoBehaviour
         isClicked = true;
 
         // 매니저에게 "나 잡혔어!" 보고
-        manager.OnClicked();
+        manager.OnClicked(gameObject.transform.position);
 
         // 즉시 삭제 (또는 클릭 성공 이펙트 재생 후 삭제)
         Destroy(gameObject);

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: harpoon_horizon
       objectReference: {fileID: 0}
+    - target: {fileID: 1160356261127867848, guid: 90972170e0330e8428b5cab85bb4f208, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 65100725ecd4ffc4d8214bb0efc226af, type: 2}
     - target: {fileID: 3626916397498700004, guid: 90972170e0330e8428b5cab85bb4f208, type: 3}
       propertyPath: m_SortingOrder
       value: 11
