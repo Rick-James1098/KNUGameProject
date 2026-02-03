@@ -8,6 +8,7 @@ public class ReelGameManager : MonoBehaviour
     public RectTransform handleKnob;  
     public Image gaugeImage; // 성공 게이지
     public Image tensionGaugeImage; // 텐션 게이지
+    public GameObject windingEffectObject;
 
     [Header("Difficulty Settings")]
     // 난이도에 따른 '게이지 차는 속도' (0.0 ~ 1.0)
@@ -36,6 +37,7 @@ public class ReelGameManager : MonoBehaviour
     public float grabRadius = 80f;          // 잡는 범위
     public float decreasePenaltyPerTurn = 0.1f; // 풀 때 성공 게이지 감소량 (고정)
     public float sensitivity = 1.0f;        // 마우스 감도
+    public float effectRotateMultiplier = 2.0f;
 
     // --- 내부 변수 (Inspector에서 안 보임) ---
     private float currentFillAmount = 0f;   // 현재 성공 게이지 (0.0 ~ 1.0)
@@ -80,6 +82,7 @@ public class ReelGameManager : MonoBehaviour
         // 3. UI 초기화
         if (gaugeImage != null) gaugeImage.fillAmount = 0f;
         if (tensionGaugeImage != null) tensionGaugeImage.fillAmount = 0f;
+        if (windingEffectObject != null) windingEffectObject.SetActive(false);
 
         Debug.Log($"[낚시 시작] 난이도: {difficulty:F2}");
     }
@@ -106,6 +109,7 @@ public class ReelGameManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
+            if (windingEffectObject != null) windingEffectObject.SetActive(false);
         }
 
         // 2. 드래그 중 로직
@@ -121,22 +125,41 @@ public class ReelGameManager : MonoBehaviour
             // 회전 비율 계산 (이번 프레임에 몇 바퀴 돌았나?)
             float turnRatio = deltaAngle / 360f;
 
-            if (deltaAngle > 0) 
+            if (Mathf.Abs(deltaAngle) > 0.05f) // 움직임이 있을 때
             {
-                // [반시계: 감기] -> 성공 게이지 증가 + 텐션 '약간' 추가
-                currentFillAmount += turnRatio * currentFillSpeed * sensitivity;
-                
-                // [핵심 변경 2] 감을 때 텐션이 오르긴 하지만, 자연 증가보다는 적은 영향력을 줍니다.
-                currentTension += turnRatio * currentWindingAdd * sensitivity;
+                if (deltaAngle > 0) 
+                {
+                    // [감기 - 반시계]
+                    currentFillAmount += turnRatio * currentFillSpeed * sensitivity;
+                    currentTension += turnRatio * currentWindingAdd * sensitivity;
+
+                    
+                }
+                else 
+                {
+                    // [풀기 - 시계]
+                    currentFillAmount += turnRatio * decreasePenaltyPerTurn * sensitivity;
+                    currentTension += turnRatio * currentUnwindingSub * sensitivity;
+                }
+                if (windingEffectObject != null)
+                {
+                    if (!windingEffectObject.activeSelf) 
+                         windingEffectObject.SetActive(true); // 안 켜져 있으면 켬
+
+                    // Z축 기준으로 회전 (손잡이와 같은 방향)
+                    // effectRotateMultiplier를 조절해 더 빠르게 돌릴 수도 있음
+                    windingEffectObject.transform.Rotate(0, 0, deltaAngle * effectRotateMultiplier);
+                }
             }
-            else 
+            else
             {
-                // [시계: 풀기] -> 성공 게이지 감소 + 텐션 '대폭' 감소
-                // turnRatio가 음수이므로 더하면 감소됨
-                currentFillAmount += turnRatio * decreasePenaltyPerTurn * sensitivity;
-                
-                // [핵심 변경 3] 자연 증가와 감는 힘을 모두 상쇄할 만큼 강력하게 줄여줍니다.
-                currentTension += turnRatio * currentUnwindingSub * sensitivity;
+                // ★ 여기가 핵심입니다!
+                // deltaAngle이 0.05보다 작음 = "마우스는 누르고 있지만 멈춰 있음"
+                // 이때 이펙트를 끕니다.
+                if (windingEffectObject != null && windingEffectObject.activeSelf) 
+                {
+                    windingEffectObject.SetActive(false);
+                }
             }
 
             // 값 범위 제한
@@ -162,6 +185,8 @@ public class ReelGameManager : MonoBehaviour
         {
             isGameActive = false;
             Debug.Log("🎉 낚시 성공! 월척입니다!");
+
+            if (windingEffectObject != null) windingEffectObject.SetActive(false);
             // 여기에 성공 연출 함수 호출
         }
 
@@ -171,6 +196,8 @@ public class ReelGameManager : MonoBehaviour
             isGameActive = false;
             Debug.Log("💥 낚싯줄이 끊어졌습니다!");
             if(tensionGaugeImage != null) tensionGaugeImage.fillAmount = 1.0f; // 꽉 찬 상태로 보여줌
+
+            if (windingEffectObject != null) windingEffectObject.SetActive(false);
             // 여기에 실패 연출 함수 호출
         }
     }
