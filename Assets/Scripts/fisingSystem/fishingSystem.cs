@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class FishingSystem : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class FishingSystem : MonoBehaviour
 
     void Update()
     {
+        // 1. 인벤토리 창이 켜져 있다면 모든 낚시 입력 무시
+        if (InventoryUI.Instance.inventoryWindow.activeSelf) return;
+                
         if (isFishing)
         {
             UpdateFishingLine();
@@ -112,7 +116,7 @@ public class FishingSystem : MonoBehaviour
                     RetrieveFishing();
                     yield break;
                 }
-
+                
                 Debug.Log(selected.name);
 
                 FishingDataManager.SelectedFish = selected;

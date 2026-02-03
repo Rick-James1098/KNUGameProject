@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9f5f5bc4aad040bb43e0a396db55b, type: 3}
   m_Name: yellowFish
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  fishName: 
-  fishSprite: {fileID: 0}
-  rarityWeight: 0
-  difficulty: 0
+  itemName: 
+  icon: {fileID: 6824087263931714186, guid: 333232101b6f33047974335c1bbae5dc, type: 3}
+  description: 
+  maxStackSize: 99
+  price: 0
+  rarityWeight: 10
+  difficulty: 1

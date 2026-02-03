@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac0c7ee9062675d44b869afbe37b0cfb
+guid: f7426419ee9e206428c8c70972635e49
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -76,7 +76,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -91,7 +91,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639054027947105750
+  platformSettingsDirtyTick: 639056399376001137
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: deck 1
+  - name: inventorySlot
     originalName: 
-    pivot: {x: 0.5102041, y: -0.032258064}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 49
-      height: 62
-    spriteID: a1d6be3b249d0a143835778c7dd9f4b0
+      width: 38
+      height: 38
+    spriteID: 3958c4ed2516ae74f83dcf6f149f7f0d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 635994564
+      value0: 3644258334
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: deck 1
+    name: inventorySlot
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: deck 1
+    - name: inventorySlot
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 7
-        y: 2
-        width: 49
-        height: 62
-      spriteId: a1d6be3b249d0a143835778c7dd9f4b0
+        x: 13
+        y: 13
+        width: 38
+        height: 38
+      spriteId: 3958c4ed2516ae74f83dcf6f149f7f0d
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -218,4 +218,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 64, y: 128}
+  previousTextureSize: {x: 64, y: 64}
