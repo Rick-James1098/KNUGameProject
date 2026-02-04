@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class FishingArcGame : MonoBehaviour
 {
+    [Header("연결")]
+    public FishingSystem fishingSystem; // [추가] FishingSystem 연결
+
     [Header("위치 보정")]
     public float verticalLeftOffset = 1.0f;
 
@@ -132,6 +135,11 @@ public class FishingArcGame : MonoBehaviour
         isGameActive = false;
         Debug.Log("제한 시간 내 성공!");
         SceneManager.LoadScene("FishingGimmickScene");
+
+        if (fishingSystem != null)
+        {
+            fishingSystem.OnMiniGameResult(true); 
+        }
     }
 
     // [추가] 실패 처리 함수
@@ -142,6 +150,12 @@ public class FishingArcGame : MonoBehaviour
         Debug.Log("시간 초과! 물고기가 도망갔습니다.");
         
         EndMiniGame(); // UI 끄기
+
+        // [수정] FishingSystem에 실패 알림
+        if (fishingSystem != null)
+        {
+            fishingSystem.OnMiniGameResult(false);
+        }
         
         // 여기에 FishingSystem의 ResetFishingState()를 호출하는 코드를 추가하면 
         // 캐릭터가 다시 자유롭게 움직일 수 있게 됩니다.
@@ -151,6 +165,7 @@ public class FishingArcGame : MonoBehaviour
     public void EndMiniGame()
     {
         isGameActive = false;
+        isDragging = false; // 드래그 상태도 리셋
         arcVisual.SetActive(false);
         pointerCircle.gameObject.SetActive(false);
     }

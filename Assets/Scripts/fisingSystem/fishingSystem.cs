@@ -14,6 +14,9 @@ public class FishingSystem : MonoBehaviour
     public Slider powerSlider;
     public LineRenderer fishingLine;
     public FishingArcGame arcGame; // 챔질 미니게임 연결
+    public Animator animator;
+    public GameObject fishingTool;
+    
 
     [Header("확률 및 타이머")]
     public List<FishData> fishPool;   // 물고기 데이터 리스트
@@ -25,28 +28,77 @@ public class FishingSystem : MonoBehaviour
     public float chargeSpeed = 1.5f;
     private float currentPower = 0f;
     private bool isCharging = false;
-    private bool isFishing = false;
+    public bool isFishing = false;
     private TopDownBobber currentBobber;
 
     void Awake()
     {
         moveScript = GetComponent<PlayerMovement>();
         if (fishingLine != null) fishingLine.enabled = false;
+
+        // [안전장치] 시작할 때 모든 상태를 초기화
+        isFishing = false;
+        isCharging = false;
+        if (fishingTool != null) fishingTool.SetActive(false);
     }
 
     void Update()
     {
-        // 1. 인벤토리 창이 켜져 있다면 모든 낚시 입력 무시
+        // 1. UI 체크
         if (InventoryUI.Instance.inventoryWindow.activeSelf) return;
-                
+
+        // 2. 낚시 중일 때 로직
         if (isFishing)
         {
             UpdateFishingLine();
-            if (Input.GetMouseButtonDown(0)) RetrieveFishing(); // 낚시 중 클릭하면 회수
-            return;
+
+            // [핵심 수정] 
+            // 1. 미니게임이 '진행 중'이 아닐 때만 (arcGame.isGameActive가 false일 때)
+            // 2. 마우스를 클릭하면 '회수(Retrieve)'를 실행한다.
+            // arcGame 자체가 아니라, 실제 미니게임 '비주얼'이 켜져 있는지 확인해야 합니다.
+            if (arcGame != null && !arcGame.arcVisual.activeSelf) 
+            {
+                if (Input.GetMouseButtonDown(0)) RetrieveFishing();
+            }
+            return; // 낚시 중일 때는 아래 HandleInput(차징)으로 못 가게 막음
         }
 
+        // 3. 낚시 중이 아닐 때만 차징 입력을 받음
         HandleInput();
+    }
+
+    public void StartFishing()
+    {
+
+        Debug.Log("낚시시작!");
+
+
+        // 플레이어의 SpriteRenderer를 가져옵니다.  
+        SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+        SpriteRenderer toolSR = fishingTool.GetComponent<SpriteRenderer>();
+        // 방향에 따라 정렬 순서를 강제로 결정
+        if (moveScript.lastDir.y > 0.1f) // 위를 보고 던질 때
+        {
+            toolSR.sortingOrder = playerSR.sortingOrder - 1; // 캐릭터 뒤로
+        }
+        else // 아래나 옆을 보고 던질 때
+        {
+            toolSR.sortingOrder = playerSR.sortingOrder + 1; // 캐릭터 앞으로
+        }
+        
+        // 2. 낚싯대(도구) 활성화
+        fishingTool.SetActive(true);
+        animator.SetBool("isCharging", true); 
+        animator.SetBool("isOnWater", false); // 리셋
+
+        // 3. 현재 캐릭터가 보고 있는 방향(lastDir)을 애니메이터에 전달
+        // 걷기 블렌드 트리에서 쓰던 파라미터와 이름을 똑같이 맞춰주세요!
+        animator.SetFloat("DirX", moveScript.lastDir.x);
+        animator.SetFloat("DirY", moveScript.lastDir.y);
+
+        // 4. 애니메이션 트리거 작동
+        animator.SetTrigger("Throw");
+        animator.SetBool("isFishing", true);
     }
 
     private void HandleInput()
@@ -56,6 +108,8 @@ public class FishingSystem : MonoBehaviour
             isCharging = true;
             currentPower = 0f;
             powerSlider.gameObject.SetActive(true);
+
+            StartFishing();
         }
 
         if (isCharging)
@@ -67,9 +121,14 @@ public class FishingSystem : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && isCharging)
         {
-            ThrowBobber();
             isCharging = false;
             powerSlider.gameObject.SetActive(false);
+
+            // 애니메이션 설정
+            animator.SetBool("isCharging", false);
+            animator.SetTrigger("Throw"); // 던지기 모션 1번 실행
+
+            ThrowBobber();
         }
     }
 
@@ -90,6 +149,7 @@ public class FishingSystem : MonoBehaviour
     // [중요] 찌가 물에 닿으면 호출됨
     public void OnBobberLanded(Vector3 landPos)
     {
+        animator.SetBool("isOnWater", true);
         Debug.Log("찌 착지 보고됨. 입질 프로세스 시작.");
         StartCoroutine(BiteProcess(landPos));
     }
@@ -140,6 +200,23 @@ public class FishingSystem : MonoBehaviour
             yield return new WaitForSeconds(1.0f); // 1초 대기 후 다음 주사위
         }
     }
+    // FishingSystem 내부
+
+    public void OnMiniGameResult(bool success)
+    {
+        if (success)
+        {
+            Debug.Log("물고기 획득 성공! 애니메이션 종료 프로세스 시작");
+            // 여기에 "대단해!" 같은 승리 포즈 애니메이션 트리거를 넣어도 좋습니다.
+        }
+        else
+        {
+            Debug.Log("물고기 놓침... 아쉽다.");
+        }
+
+        // 미니게임이 끝났으니 이제 낚싯대를 집어넣고 캐릭터를 자유롭게 만듭니다.
+        ResetFishingState();
+    }
 
     private FishData SelectRandomFish()
     {
@@ -165,7 +242,7 @@ public class FishingSystem : MonoBehaviour
     }
 
     public void RetrieveFishing()
-    {
+    {   
         StopAllCoroutines(); // 진행 중인 입질 프로세스 중단
         if (currentBobber != null) Destroy(currentBobber.gameObject);
         ResetFishingState();
@@ -174,8 +251,30 @@ public class FishingSystem : MonoBehaviour
     public void ResetFishingState()
     {
         isFishing = false;
-        currentBobber = null;
-        moveScript.canMove = true;
+        isCharging = false;
+
+        // [핵심] 현재 필드에 있는 찌를 찾아서 파괴합니다.
+        if (currentBobber != null)
+        {
+            Debug.Log("찌 파괴 완료");
+            Destroy(currentBobber.gameObject);
+            currentBobber = null; // 참조 초기화
+        }
+
+        // 2. 애니메이터 파라미터 리셋 (이게 있어야 평소 걷기/아이들로 돌아갑니다)
+        if (animator != null)
+        {
+            animator.SetBool("isFishing", false);
+            animator.SetBool("isCharging", false);
+            animator.SetBool("isOnWater", false);
+        }
+
+        if (fishingTool != null)
+        {
+            fishingTool.SetActive(false);
+        }
+        
+        if (moveScript != null) moveScript.canMove = true;
         if (fishingLine != null) fishingLine.enabled = false;
     }
 }

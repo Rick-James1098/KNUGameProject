@@ -23,6 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canMove || (InventoryUI.Instance != null && InventoryUI.Instance.IsAnyUIOpen))
+        {
+            moveInput = Vector2.zero; // 이동 입력 초기화
+            if (animator != null) animator.SetBool("isMoving", false); // 애니메이션 멈춤
+            return; // 여기서 함수 종료 (아래 로직 실행 안 됨)
+        }
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
