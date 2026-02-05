@@ -29,6 +29,11 @@ public class StackGauge : MonoBehaviour
     public float spacing = 5f;      // 블럭 사이 간격 (Layout Group의 Spacing 값과 동일하게)
     public float startY = -150f;    // 첫 번째 블럭(0번)의 Y 좌표 (직접 찾아서 입력)
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource; // 효과음을 재생할 오디오 소스
+    public AudioClip successAudio;     // 성공했을 때 소리 (띵동!)
+    public AudioClip failAudio;        // 실패했을 때 소리 (띠~!)
+
     public void SetRandomTarget()
     {
         targetBlockIndex = Random.Range(3, gaugeBlocks.Length);
@@ -102,6 +107,18 @@ public class StackGauge : MonoBehaviour
     {
         // 정확히 목표 칸에 멈췄는지 확인
         bool isSuccess = (currentBlockIndex == targetBlockIndex); // +1은 인덱스 차이 보정
+
+        if (audioSource != null)
+        {
+            if (isSuccess && successAudio != null)
+            {
+                audioSource.PlayOneShot(successAudio);
+            }
+            else if (!isSuccess && failAudio != null)
+            {
+                audioSource.PlayOneShot(failAudio);
+            }
+        }
 
         if (harpoon != null && gameManager.isStarted == true)
         {

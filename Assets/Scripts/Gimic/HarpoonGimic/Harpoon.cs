@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using UnityEngine;
+using System.Collections;
 
 public class Harpoon : MonoBehaviour
 {
@@ -8,6 +8,10 @@ public class Harpoon : MonoBehaviour
     private bool isSuccess = false;
     public float speed = 15f;
     private Animator animator;
+
+    [Header("Settings")]
+    // 작살 머리(피벗)에서 꼬리까지의 거리.
+    public float tailOffset = 2.0f;
 
     [Header("Effects")]
     public GameObject hitEffect; // [추가] 피 이펙트 프리팹 연결
@@ -43,6 +47,15 @@ public class Harpoon : MonoBehaviour
             transform.Rotate(0, 0, 15); // 15도 정도 빗나가게 회전
         }
 
+        StartCoroutine(ShootProcess());
+    }
+
+    IEnumerator ShootProcess()
+    {
+        // 1초 대기 (이때 작살은 조준된 상태로 멈춰있음)
+        yield return new WaitForSeconds(0.5f);
+
+        // 1초 뒤 발사 시작!
         isLaunched = true;
 
         if (animator != null)

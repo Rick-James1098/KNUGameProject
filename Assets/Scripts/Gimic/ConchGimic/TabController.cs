@@ -8,6 +8,9 @@ public class TabController : MonoBehaviour
     private bool isClicked = false;
     public float lifeTime = 2.0f;
 
+    [Header("Effects")]
+    public GameObject clickEffectPrefab;
+
     public void Setup(ConchGameManager gm, float speedMultiplier)
     {
         manager = gm;
@@ -28,6 +31,13 @@ public class TabController : MonoBehaviour
         if (isClicked) return; // 이미 클릭했으면 무시
 
         isClicked = true;
+
+        if (clickEffectPrefab != null)
+        {
+            // 현재 내 위치(transform.position)에 이펙트 생성
+            GameObject effect = Instantiate(clickEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(effect, 0.4f);
+        }
 
         // 매니저에게 "나 잡혔어!" 보고
         manager.OnClicked(gameObject.transform.position);

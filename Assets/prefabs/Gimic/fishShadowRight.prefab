@@ -181,7 +181,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dbc70992f10540808469ef4eba2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishShadow
-  speed: 30
   catchable: 0
+  speed: 15
+  moveDurationMin: 2
+  moveDurationMax: 6
+  stopDuration: 3
+  spriteRenderer: {fileID: 0}
+  leftSprite: {fileID: 0}
+  rightSprite: {fileID: 0}
+  leftCollider: {fileID: 0}
+  rightCollider: {fileID: 0}
   surpriseMark: {fileID: 8100298293272159119, guid: 12ee72d7314891f479bfa162a4a5c4f9, type: 3}
-  markOffset: {x: 0.1, y: 0.1, z: 0}
+  leftMarkOffset: {x: -0.1, y: 0.1, z: 0}
+  rightMarkOffset: {x: 0.1, y: 0.1, z: 0}
+  leftRipple: {fileID: 0}
+  rightRipple: {fileID: 0}

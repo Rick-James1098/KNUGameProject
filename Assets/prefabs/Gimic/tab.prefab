@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TabController
   lifeTime: 2
+  clickEffectPrefab: {fileID: 8327580129739859112, guid: 0dbd10aad7b5c43429b82ee9ea82b30f, type: 3}
