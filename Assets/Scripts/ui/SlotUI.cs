@@ -15,20 +15,39 @@ public class SlotUI : MonoBehaviour
     {
         assignedSlot = newSlot;
 
-        if (assignedSlot != null && assignedSlot.item != null)
+        if (newSlot != null && newSlot.item != null)
         {
             iconImage.enabled = true;
-            iconImage.sprite = assignedSlot.item.icon;
-            
-            // 겹칠 수 있는 아이템이고 1개보다 많을 때만 숫자 표시
-            if (assignedSlot.item.maxStackSize > 1 && assignedSlot.count > 1)
-                countText.text = assignedSlot.count.ToString();
+
+            // --- 아이콘 결정 로직 시작 ---
+            if (newSlot.item is ContainerItemData containerData)
+            {
+                // 통 안에 물고기가 1개라도 들어있는지 확인
+                if (newSlot.innerSlots != null && newSlot.innerSlots.Count > 0)
+                {
+                    // 내용물이 있으면 가득 찬 아이콘
+                    iconImage.sprite = containerData.fullIcon;
+                }
+                else
+                {
+                    // 비어있으면 빈 아이콘
+                    iconImage.sprite = containerData.emptyIcon;
+                }
+            }
+            else
+            {
+                // 일반 아이템은 기존대로 기본 아이콘 사용
+                iconImage.sprite = newSlot.item.icon;
+            }
+            // --- 아이콘 결정 로직 끝 ---
+
+            if (newSlot.item.maxStackSize > 1 && newSlot.count > 1)
+                countText.text = newSlot.count.ToString();
             else
                 countText.text = "";
         }
         else
         {
-            // 빈 칸 처리
             iconImage.enabled = false;
             countText.text = "";
         }

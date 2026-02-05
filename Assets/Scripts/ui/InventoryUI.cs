@@ -15,6 +15,8 @@ public class InventoryUI : MonoBehaviour
     private List<SlotUI> allMainSlots = new List<SlotUI>();
     private List<SlotUI> allQuickSlots = new List<SlotUI>();
 
+    public bool IsAnyUIOpen => inventoryWindow.activeSelf || (bucketView != null && bucketView.viewPanel.activeSelf);
+
     void Awake()
     {
         Instance = this;

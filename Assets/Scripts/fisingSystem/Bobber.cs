@@ -5,6 +5,8 @@ public class TopDownBobber : MonoBehaviour
 {
     [HideInInspector] public FishingSystem fishingSystem;
     public Transform visualChild;
+
+    public bool isSettled = false;
     
     [Header("포물선 설정")]
     public AnimationCurve arcCurve;
@@ -19,6 +21,7 @@ public class TopDownBobber : MonoBehaviour
 
     public void Launch(Vector2 direction, float power)
     {
+        isSettled = false;
         Vector2 start = transform.position;
         Vector2 target = start + (direction * power * maxDistance);
         StartCoroutine(FlyToTarget(start, target));
@@ -47,6 +50,7 @@ public class TopDownBobber : MonoBehaviour
         Collider2D hit = Physics2D.OverlapPoint(landPos, waterLayer);
         if (hit != null)
         {
+            isSettled = true;
             Instantiate(splashPrefab, landPos, Quaternion.identity);
             fishingSystem.OnBobberLanded(visualChild.position); // 지휘관에게 보고
             StartCoroutine(BobbingOnWater());

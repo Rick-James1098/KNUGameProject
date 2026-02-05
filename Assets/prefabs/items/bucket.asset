@@ -18,3 +18,5 @@ MonoBehaviour:
   maxStackSize: 99
   price: 10
   capacity: 10
+  emptyIcon: {fileID: -7628735528695913467, guid: 58aed4776756972459a86ec0a2a8f6f0, type: 3}
+  fullIcon: {fileID: 71553269408285046, guid: 95fe03b1b29b3db4697a2672596f4d4d, type: 3}
