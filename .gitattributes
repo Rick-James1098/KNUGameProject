@@ -13,6 +13,7 @@
 *.hlsl                  text linguist-language=hlsl
 *.raytrace              text linguist-language=hlsl
 *.shader                text
+* text=auto
 
 # Unity JSON files
 *.asmdef                unity-json

@@ -5,9 +5,12 @@ public class FishShadow : MonoBehaviour
 {
     private PolygonCollider2D moveArea;
     private Vector3 targetPosition;
-
-    public float speed = 30f;
     public bool catchable = false;
+    [Header("Moving Settings")]
+    public float speed = 30f;
+    public float moveDurationMin = 2.0f; // 최소 이만큼은 움직이다가 멈춤
+    public float moveDurationMax = 5.0f; // 최대 이만큼 움직이다가 멈춤
+    public float stopDuration = 1.0f;
 
     [Header("Visuals")]
     public SpriteRenderer spriteRenderer; // 물고기 이미지를 보여주는 컴포넌트
@@ -22,9 +25,7 @@ public class FishShadow : MonoBehaviour
     public GameObject surpriseMark; 
     public Vector3 leftMarkOffset = new Vector3(-0.1f, 0.1f, 0);
     public Vector3 rightMarkOffset = new Vector3(0.1f, 0.1f, 0);
-    public float moveDurationMin = 2.0f; // 최소 이만큼은 움직이다가 멈춤
-    public float moveDurationMax = 5.0f; // 최대 이만큼 움직이다가 멈춤
-    public float stopDuration = 1.0f;
+    
     public GameObject leftRipple;   // 왼쪽 볼 때 켜질 녀석
     public GameObject rightRipple;  // 오른쪽 볼 때 켜질 녀석
 
