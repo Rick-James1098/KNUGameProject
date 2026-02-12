@@ -6252,50 +6252,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe499bbca2ea234dad927a76ee75ed6, type: 3}
---- !u!1 &754142474
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 754142476}
-  - component: {fileID: 754142475}
-  m_Layer: 0
-  m_Name: HouseToTown
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &754142475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754142474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e348170ecb933f498405f5ccb4718ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
---- !u!4 &754142476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754142474}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.619, y: -1.082, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &756369405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18220,10 +18176,6 @@ PrefabInstance:
       propertyPath: m_SpriteSortPoint
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2244122559293318707, guid: 675759cc302fe874795a7eb52c20c115, type: 3}
-      propertyPath: targetSpawnPointName
-      value: PlayerSpawner
-      objectReference: {fileID: 0}
     - target: {fileID: 2326216673861614781, guid: 675759cc302fe874795a7eb52c20c115, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.05
@@ -18426,4 +18378,3 @@ SceneRoots:
   - {fileID: 1419565804}
   - {fileID: 798569886}
   - {fileID: 1273725180}
-  - {fileID: 754142476}
