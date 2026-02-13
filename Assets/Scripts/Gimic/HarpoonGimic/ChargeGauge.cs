@@ -1,5 +1,4 @@
-using NUnit.Framework;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,25 +8,23 @@ public class StackGauge : MonoBehaviour
     private Harpoon harpoon;
 
     private bool isCharging = true;
-    private float chargeTimePerBlock = 0.1f;
 
     [Header("UI Objects")]
-    public GameObject[] gaugeBlocks; // 유니티 에디터에서 블럭 이미지들을 순서대로 넣어주세요
+    public Image gaugeImage;       // Filled로 설정된 게이지바 이미지
+    public GameObject targetLineMin; // 목표 구간 시작선 (아래쪽)
+    public GameObject targetLineMax; // 목표 구간 끝선 (위쪽)
 
     [Header("Settings")]
-     // 블럭 하나가 켜지는 데 걸리는 시간
-    private float currentTimer = 0.0f;
-    private int currentBlockIndex = 0; // 현재 몇 번째 블럭까지 켜졌는지
+    public float fillSpeed = 0.5f; // 게이지가 차오르는 속도 (0 ~ 1 사이 값/초)
+    private float currentFillAmount = 0.0f;
 
     [Header("Target System")]
-    public GameObject targetLine; // 아까 만든 빨간 선 UI 연결
-    public int targetBlockIndex;  // 정답 블럭 번호 (자동 설정됨)
-    public Harpoon harpoonPrefab; // 작살 컨트롤러 연결
+    private float targetMinAmount; // 목표 구간 최소값 (0.0 ~ 1.0)
+    private float targetMaxAmount; // 목표 구간 최대값 (0.0 ~ 1.0)
 
-    [Header("Calculation Settings")]
-    public float blockHeight = 30f; // 블럭 하나의 높이 (Inspector에서 설정)
-    public float spacing = 5f;      // 블럭 사이 간격 (Layout Group의 Spacing 값과 동일하게)
-    public float startY = -150f;    // 첫 번째 블럭(0번)의 Y 좌표 (직접 찾아서 입력)
+    [Header("Layout Settings")]
+    private float gaugeHeight = 877.5f; // 게이지바 전체 높이 (UI RectTransform 높이와 맞춰주세요)
+    private float startY = -468.75f;     // 게이지바의 바닥 Y 좌표
 
     [Header("Audio Settings")]
     public AudioSource audioSource; // 효과음을 재생할 오디오 소스
@@ -36,15 +33,22 @@ public class StackGauge : MonoBehaviour
 
     public void SetRandomTarget()
     {
-        targetBlockIndex = Random.Range(3, gaugeBlocks.Length);
+        float rangeSize = UnityEngine.Random.Range(0.01f, 0.1f);
 
-        float calcY = startY + (targetBlockIndex * (blockHeight + spacing));
+        // 목표 구간의 시작점 결정 (0.3 ~ 0.8 사이에서 랜덤)
+        targetMinAmount = UnityEngine.Random.Range(0.3f, 0.8f - rangeSize);
+        targetMaxAmount = targetMinAmount + rangeSize;
 
-        targetLine.SetActive(true);
+        // 3. 기준선 UI 위치 잡기
+        targetLineMin.SetActive(true);
+        targetLineMax.SetActive(true);
 
-        // 부모(Container) 기준의 상대 좌표(LocalPosition)를 사용합니다.
-        // X는 0 (가운데), Y는 계산된 값, Z는 0
-        targetLine.transform.localPosition = new Vector3(0, calcY, 0);
+        // 게이지 값(0~1)을 Y좌표로 변환: 시작Y + (전체높이 * 비율)
+        float minLineY = startY + (gaugeHeight * targetMinAmount);
+        float maxLineY = startY + (gaugeHeight * targetMaxAmount);
+
+        targetLineMin.transform.localPosition = new Vector3(0, minLineY, 0);
+        targetLineMax.transform.localPosition = new Vector3(0, maxLineY, 0);
     }
 
     void Start()
@@ -58,10 +62,7 @@ public class StackGauge : MonoBehaviour
         this.harpoon = harpoonCtrl;
         this.gameManager = manager;
         
-        // 게이지 값 초기화
-        currentTimer = 0;
-        currentBlockIndex = 0;
-        chargeTimePerBlock = Random.Range(0.01f, 0.2f);
+        fillSpeed = UnityEngine.Random.Range(0.5f, 3f);
     }
     void Update()
     {
@@ -72,11 +73,9 @@ public class StackGauge : MonoBehaviour
         }
 
         // 2. 마우스 뗐을 때 (초기화 또는 발사)
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && isCharging)
         {
             isCharging = false;
-
-            // 여기에 발사 로직 추가 가능
             CheckSuccess();
         }
     }
@@ -84,29 +83,22 @@ public class StackGauge : MonoBehaviour
     void Charge()
     {
         // 모든 블럭이 다 찼으면 더 이상 충전 안 함
-        if (currentBlockIndex >= gaugeBlocks.Length) return;
+        if (currentFillAmount >= 1.0f) return;
 
-        // 시간 누적
-        currentTimer += Time.deltaTime;
-
-        // 누적 시간이 설정한 시간보다 커지면 블럭 하나 켜기
-        if (currentTimer >= chargeTimePerBlock)
+        // 시간 * 속도만큼 채움
+        currentFillAmount += Time.deltaTime * fillSpeed;
+        
+        // UI 업데이트
+        if (gaugeImage != null)
         {
-            currentTimer = 0.0f; // 타이머 초기화
-            
-            // 현재 인덱스의 블럭을 켜고, 인덱스 증가
-            if (currentBlockIndex < gaugeBlocks.Length)
-            {
-                gaugeBlocks[currentBlockIndex].SetActive(true);
-                currentBlockIndex++;
-            }
+            gaugeImage.fillAmount = currentFillAmount;
         }
     }
 
     void CheckSuccess()
     {
         // 정확히 목표 칸에 멈췄는지 확인
-        bool isSuccess = (currentBlockIndex == targetBlockIndex); // +1은 인덱스 차이 보정
+        bool isSuccess = (currentFillAmount >= targetMinAmount && currentFillAmount <= targetMaxAmount); // +1은 인덱스 차이 보정
 
         if (audioSource != null)
         {
@@ -127,26 +119,18 @@ public class StackGauge : MonoBehaviour
 
         if (gameManager != null)
         {
-            gameManager.OnRoundFinished();
+            gameManager.OnRoundFinished(isSuccess);
         }
     }
 
     public void ResetGaugeUI()
     {
-        // 블럭 다 끄기
-        for (int i = 0; i < gaugeBlocks.Length; i++)
-        {
-            gaugeBlocks[i].SetActive(false);
-        }
-        
-        // 빨간 선 끄기
-        if (targetLine != null)
-        {
-            targetLine.SetActive(false);
-        }
-
-        currentBlockIndex = 0;
-        currentTimer = 0;
+        currentFillAmount = 0.0f;
         isCharging = true;
+
+        if (gaugeImage != null) gaugeImage.fillAmount = 0f;
+
+        if (targetLineMin != null) targetLineMin.SetActive(false);
+        if (targetLineMax != null) targetLineMax.SetActive(false);
     }
 }

@@ -37,19 +37,22 @@ public class RopeRenderer : MonoBehaviour
     }
 
     // 외부(작살)에서 호출해서 연결을 시도하는 함수
-    public void AttachToTarget(Rigidbody2D targetRB)
+    public void AttachToTarget(Rigidbody2D targetRB, Transform attachmentPoint)
     {
         if (endJoint != null && targetRB != null)
         {
             // 나중을 위해 작살의 트랜스폼 저장
-            tailTransform = targetRB.transform;
+            tailTransform = attachmentPoint;
 
             // 물리 관절 연결
-            endJoint.transform.position = targetRB.transform.position;
+            endJoint.transform.position = attachmentPoint.position;
             endJoint.autoConfigureConnectedAnchor = false;
             endJoint.connectedBody = targetRB;
-            endJoint.anchor = Vector2.zero;
-            endJoint.connectedAnchor = Vector2.zero; 
+            
+            Vector2 localAnchor = targetRB.transform.InverseTransformPoint(attachmentPoint.position);
+            endJoint.anchor = Vector2.zero; // 내 쪽(로프 끝)은 중심
+            endJoint.connectedAnchor = localAnchor; // 상대 쪽(작살)은 꼬리 위치
+
             endJoint.enabled = true;
         }
     }

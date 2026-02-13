@@ -155,8 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicHarpoon
   rotateSpeed: 300
   shotSpeed: 30
-  pullDistance: 1
-  pullSpeed: 5
+  pullDistance: 2.5
+  pullSpeed: 10
   stopTime: 0.5
   hitEffect: {fileID: 2288104358047461311, guid: a256532c11265994b9418083f47e9bd9, type: 3}
   ropePrefab: {fileID: 3784507826175568100, guid: 9544e49cd13e08e45a790cca55533f51, type: 3}

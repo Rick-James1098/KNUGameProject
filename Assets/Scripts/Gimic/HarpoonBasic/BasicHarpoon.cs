@@ -40,7 +40,7 @@ public class BasicHarpoon : MonoBehaviour
 
             // 2. 작살 몸체(혹은 꼬리)에 Rigidbody2D가 있어야 연결 가능
             Rigidbody2D myRB = GetComponent<Rigidbody2D>();
-            currentRope.AttachToTarget(rb);
+            currentRope.AttachToTarget(rb, tailPoint);
             IgnoreRopeCollision(ropeObj);
         }
     }
