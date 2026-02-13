@@ -52,31 +52,35 @@ public class HarpoonGimicManager : MonoBehaviour
         }
     }
 
-    public void OnRoundFinished()
+    public void OnRoundFinished(bool isSuccess)
     {
         if(isStarted == true)
         {
             StopCurrentFish();
             
             // 바로 리셋하면 작살 날아가는 게 안 보이니 2초 뒤에 리셋
-            StartCoroutine(ResetGameRoutine());
+            StartCoroutine(ResetGameRoutine(isSuccess));
             isStarted = false;
         }
     }
 
-    IEnumerator ResetGameRoutine()
+    IEnumerator ResetGameRoutine(bool isSuccess)
     {
-        // 2초 대기 (작살이 날아가서 꽂히는 시간)
-        yield return new WaitForSeconds(2.0f);
+        if(!isSuccess)
+        {
+            // 2초 대기 (작살이 날아가서 꽂히는 시간)
+            yield return new WaitForSeconds(2.0f);
 
-        // 1. 기존 오브젝트 청소 (Destroy)
-        if (currentFish != null) Destroy(currentFish);
-        if (currentHarpoon != null) Destroy(currentHarpoon);
+            // 1. 기존 오브젝트 청소 (Destroy)
+            if (currentFish != null) Destroy(currentFish);
+            if (currentHarpoon != null) Destroy(currentHarpoon);
 
-        // 2. 게이지 초기화 (StackGauge에 Reset 함수 필요)
-        gauge.ResetGaugeUI();
+            // 2. 게이지 초기화 (StackGauge에 Reset 함수 필요)
+            gauge.ResetGaugeUI();
 
-        // 3. 다음 판 시작!
-        StartGame();
+            // 3. 다음 판 시작!
+            StartGame();
+        }
+        
     }
 }
