@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9f5f5bc4aad040bb43e0a396db55b, type: 3}
   m_Name: albacore
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  itemName: 
+  itemName: Albacore
   icon: {fileID: 5085340434473216325, guid: 8f7c5abfc528d874182425f7ccb2231d, type: 3}
   description: 
   maxStackSize: 99

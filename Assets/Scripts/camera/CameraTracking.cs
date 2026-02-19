@@ -27,6 +27,13 @@ public class CameraFollowTilemap : MonoBehaviour
         if (_cam == null) _cam = Camera.main;
 
         CalculateTilemapBoundaries();
+
+        // 씬이 시작될 때 "Player" 태그를 가진 오브젝트를 자동으로 찾아서 타겟으로 설정
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+        }
     }
 
     void LateUpdate()

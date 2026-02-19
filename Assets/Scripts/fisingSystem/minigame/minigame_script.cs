@@ -1,172 +1,182 @@
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class FishingArcGame : MonoBehaviour
 {
-    [Header("연결")]
-    public FishingSystem fishingSystem; // [추가] FishingSystem 연결
+    public PlayerData data;
 
-    [Header("위치 보정")]
-    public float verticalLeftOffset = 1.0f;
-
-    [Header("연결")]
-    public GameObject arcVisual;
-    public Transform pointerCircle;
-
-    [Header("타이머 설정")]
-    public float timeLimit = 1.0f; // 제한 시간 1초
-    private float currentTimer;    // 현재 남은 시간
+    [Header("UI 연결")]
+    public GameObject arcVisual;      // 부채꼴 (호)
+    public Transform pointerCircle;   // 드래그할 원
 
     [Header("설정")]
-    public float grabDistance = 0.5f; // 너무 작으면 클릭하기 힘드니 0.5 정도로 추천
+    public float timeLimit = 3.0f;
+    public float arcDistance = 1.0f;  // 플레이어 뒤통수에서 떨어질 거리
+    public float sideOffset = 1.0f;   // 위/아래 볼 때 좌우로 이동할 거리
 
-    private bool isGameActive = false;
+    private float currentTimer;
     private bool isDragging = false;
-    private Vector2 targetDirection;
     private Collider2D arcCollider;
-    private Vector3 lastCirclePos;
+    private Transform playerTransform;
+
+    // 호의 원래 크기를 기억할 변수
+    private Vector3 originalArcScale;
+    
+    // [추가] 빠른 드래그 관통 방지를 위한 이전 위치 저장
+    private Vector3 lastPointerPos; 
 
     void Start()
     {
         arcCollider = arcVisual.GetComponentInChildren<Collider2D>();
-    }
-
-    public void StartMiniGame(Vector3 bobberPos, Vector2 backDir)
-    {
-        isGameActive = true;
-        isDragging = false;
-        currentTimer = timeLimit; // 시작할 때 타이머를 1초로 초기화
         
-        targetDirection = backDir.normalized;
+        originalArcScale = arcVisual.transform.localScale;
 
-        pointerCircle.gameObject.SetActive(true);
-        pointerCircle.position = bobberPos;
+        arcVisual.SetActive(false);
+        pointerCircle.gameObject.SetActive(false);
 
-        arcVisual.SetActive(true);
-
-        Vector3 finalPos = transform.position + (Vector3)(targetDirection * 1.5f);
-        if (Mathf.Abs(targetDirection.y) > 0.5f)
-        {
-            finalPos.x -= verticalLeftOffset;
-        }
-
-        finalPos.z = 0;
-        arcVisual.transform.position = finalPos;
-
-        arcVisual.transform.up = targetDirection;
-        arcVisual.transform.Rotate(0, 0, 90f);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null) playerTransform = player.transform;
     }
 
     void Update()
     {
-        // 1. 게임 중이 아니면 아무것도 안 함
-        if (!isGameActive) return;
-
-        // 2. 타이머는 드래그 여부와 상관없이 항상 흘러야 함
-        currentTimer -= Time.deltaTime;
-        if (currentTimer <= 0)
+        if (data.isStrikeGameActive && !arcVisual.activeSelf)
         {
-            Fail();
-            return;
+            StartUI();
         }
 
-        // 3. 마우스 좌표 계산 (반드시 WorldPoint!!)
+        if (!data.isStrikeGameActive) return;
+
+        currentTimer -= Time.deltaTime;
+        if (currentTimer <= 0) { Fail(); return; }
+
+        HandleInput();
+    }
+
+    void StartUI()
+    {
+        currentTimer = timeLimit;
+
+        if (playerTransform != null)
+        {
+            Vector2 lookDir = data.lastDirection.normalized;
+            if (lookDir == Vector2.zero) lookDir = Vector2.down;
+
+            Vector3 spawnPos = playerTransform.position - (Vector3)(lookDir * arcDistance);
+            
+            if (lookDir.y > 0.5f) spawnPos.x += sideOffset; 
+            else if (lookDir.y < -0.5f) spawnPos.x -= sideOffset; 
+
+            spawnPos.z = 0; 
+            arcVisual.transform.position = spawnPos;
+
+            arcVisual.transform.right = lookDir; 
+
+            Vector3 currentScale = originalArcScale;
+            if (lookDir.x < -0.5f) 
+            {
+                currentScale.x = -Mathf.Abs(originalArcScale.y); 
+            }
+            else
+            {
+                currentScale.x = Mathf.Abs(originalArcScale.y);
+            }
+            arcVisual.transform.localScale = currentScale;
+        }
+
+        if (data.currentBobber != null)
+        {
+            Vector3 bobberPos = data.currentBobber.transform.position;
+            bobberPos.z = 0;
+            pointerCircle.position = bobberPos;
+        }
+
+        arcVisual.SetActive(true);
+        pointerCircle.gameObject.SetActive(true);
+    }
+
+    void HandleInput()
+    {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
-        // 4. 마우스 클릭 시 원 잡기 (아직 드래그 중이 아닐 때 실행되어야 함)
-        if (Input.GetMouseButtonDown(0) && !isDragging)
+        // 1. 드래그 시작 감지
+        if (Input.GetMouseButtonDown(0))
         {
-            Collider2D hit = Physics2D.OverlapPoint(mousePos);
-            if (hit != null && hit.transform == pointerCircle)
+            float dist = Vector2.Distance(mousePos, pointerCircle.position);
+            if (dist < 0.8f) 
             {
                 isDragging = true;
-                Debug.Log("원 잡기 성공!");
+                lastPointerPos = pointerCircle.position; // 시작 위치 저장
             }
         }
 
-        // 5. 드래그 중일 때의 처리
+        // 2. 드래그 중 처리
         if (isDragging)
         {
-            // 떼는 순간 드래그 해제
+            // --- [핵심 수정] 빠른 속도 관통 방지 (Linecast) ---
+            // 이전 프레임 위치부터 현재 마우스 위치까지 레이저를 쏴서 충돌체가 있는지 검사
+            RaycastHit2D[] hits = Physics2D.LinecastAll(lastPointerPos, mousePos);
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider == arcCollider)
+                {
+                    Debug.Log("성공! 닿자마자 판정 (Linecast)");
+                    pointerCircle.position = mousePos; 
+                    Success();
+                    return; // 함수 즉시 종료
+                }
+            }
+
+            // --- 점 판정 (마우스 현재 위치가 호 안에 들어왔는지 안전장치) ---
+            if (arcCollider.OverlapPoint(mousePos))
+            {
+                Debug.Log("성공! 닿자마자 판정 (OverlapPoint)");
+                pointerCircle.position = mousePos; 
+                Success();
+                return; 
+            }
+
+            // 호에 닿지 않은 채로 마우스를 뗐다면 실패 처리
             if (Input.GetMouseButtonUp(0))
             {
                 isDragging = false;
+                Debug.Log("실패! 호에 닿기 전에 손을 뗐습니다.");
+                Fail();
                 return;
             }
 
-            // 마우스 계속 누르고 있으면 이동 및 충돌 체크
-            if (Input.GetMouseButton(0))
-            {
-                lastCirclePos = pointerCircle.position;
-                pointerCircle.position = mousePos;
-
-                if (IsTouchingArcEnhanced(lastCirclePos, mousePos))
-                {
-                    Success();
-                }
-            }
+            // 시각적 이동 및 이전 위치 갱신
+            pointerCircle.position = mousePos;
+            lastPointerPos = mousePos; 
         }
-    }
-    bool IsTouchingArcEnhanced(Vector2 start, Vector2 end)
-    {
-        // 1. 현재 위치에서 겹쳐있는지 기본 체크
-        if (arcCollider.OverlapPoint(end)) return true;
-
-        // 2. 이전 위치에서 현재 위치까지 '선' 혹은 '원'을 쏴서 그 사이에 호가 있는지 체크 (CircleCast)
-        float distance = Vector2.Distance(start, end);
-        Vector2 direction = (end - start).normalized;
-
-        // 원의 반지름만큼 두께를 가진 광선을 쏴서 그 경로에 arcCollider가 걸리는지 확인
-        RaycastHit2D hit = Physics2D.CircleCast(start, 0.3f, direction, distance);
-
-        if (hit.collider != null && hit.collider == arcCollider)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     void Success()
     {
-        isGameActive = false;
-        Debug.Log("제한 시간 내 성공!");
-        SceneManager.LoadScene("FishingGimmickScene");
-
-        if (fishingSystem != null)
-        {
-            fishingSystem.OnMiniGameResult(true); 
-        }
-    }
-
-    // [추가] 실패 처리 함수
-    void Fail()
-    {
-        isGameActive = false;
-        isDragging = false;
-        Debug.Log("시간 초과! 물고기가 도망갔습니다.");
-        
-        EndMiniGame(); // UI 끄기
-
-        // [수정] FishingSystem에 실패 알림
-        if (fishingSystem != null)
-        {
-            fishingSystem.OnMiniGameResult(false);
-        }
-        
-        // 여기에 FishingSystem의 ResetFishingState()를 호출하는 코드를 추가하면 
-        // 캐릭터가 다시 자유롭게 움직일 수 있게 됩니다.
-        // GetComponent<FishingSystem>().ResetFishingState();
-    }
-
-    public void EndMiniGame()
-    {
-        isGameActive = false;
-        isDragging = false; // 드래그 상태도 리셋
+        data.isStrikeGameActive = false;
         arcVisual.SetActive(false);
         pointerCircle.gameObject.SetActive(false);
+        isDragging = false;
+        
+        if (data.currentBobber != null) Destroy(data.currentBobber);
+
+        SceneManager.LoadScene("ReelGimic");
+    }
+
+    void Fail()
+    {
+        data.ResetFishingStatus();
+        arcVisual.SetActive(false);
+        pointerCircle.gameObject.SetActive(false);
+        isDragging = false;
+
+        if (data.currentBobber != null) Destroy(data.currentBobber);
+
+        FishingSystem fSystem = FindObjectOfType<FishingSystem>();
+        if (fSystem != null)
+        {
+            fSystem.RetrieveFishing();
+        }
     }
 }

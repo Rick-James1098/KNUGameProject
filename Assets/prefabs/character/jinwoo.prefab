@@ -1049,8 +1049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0c39ddb0b997e4691a2db660331618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  data: {fileID: 0}
   moveSpeed: 5
-  lastDir: {x: 0, y: -1}
   canMove: 1
 --- !u!50 &3758073750716015299
 Rigidbody2D:
@@ -1142,13 +1142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832b695cf5aca4a438fbbb9bafcd1a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDownBobber
+  data: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
   rodTip: {fileID: 2537506482071067794}
-  moveScript: {fileID: 2683307308723784304}
   bobberPrefab: {fileID: 7491904324101819620, guid: b0b1217c7f8532c419be30f1014f3e0a, type: 3}
   throwPoint: {fileID: 2144908032269301739}
   powerSlider: {fileID: 4229752881014489991}
   fishingLine: {fileID: 2219191113215226095}
-  arcGame: {fileID: 4132469192896991757}
   animator: {fileID: 0}
   fishingTool: {fileID: 0}
   fishPool:
@@ -1164,7 +1163,6 @@ MonoBehaviour:
   minWaitTime: 2
   maxWaitTime: 5
   chargeSpeed: 1.5
-  isFishing: 0
 --- !u!114 &4132469192896991757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,11 +1175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275ab5ff4dd0cca4c850610e33c9de51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingArcGame
-  verticalLeftOffset: 1
+  data: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
   arcVisual: {fileID: 3961793573421989012}
   pointerCircle: {fileID: 5264453280606744675}
   timeLimit: 1
-  grabDistance: 0.5
 --- !u!4 &6427116759934437036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}

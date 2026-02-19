@@ -2,109 +2,74 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Data Reference")]
+    public PlayerData data;
+
     [Header("이동 설정")]
     public float moveSpeed = 5f;
-
-    // [추가] 외부(FishingSystem)에서 참조할 마지막 방향 데이터
-    public Vector2 lastDir = Vector2.down;
-    public bool canMove = true; // 낚시 중일때 외부에서 변경
+    public bool canMove = true; 
 
     private Rigidbody2D rb;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 중복 방지 및 파괴 방지
+        var objs = FindObjectsOfType<PlayerMovement>();
+        if (objs.Length > 1) { Destroy(gameObject); return; }
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
     {
-        if (!canMove || (InventoryUI.Instance != null && InventoryUI.Instance.IsAnyUIOpen))
+        // 낚시 중이거나 UI가 열려있으면 이동 불가
+        if (!canMove || data.isFishing || (InventoryUI.Instance != null && InventoryUI.Instance.IsAnyUIOpen))
         {
-            moveInput = Vector2.zero; // 이동 입력 초기화
-            if (animator != null) animator.SetBool("isMoving", false); // 애니메이션 멈춤
-            return; // 여기서 함수 종료 (아래 로직 실행 안 됨)
+            moveInput = Vector2.zero;
+            if (animator != null) animator.SetBool("isMoving", false);
+            return;
         }
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        // 1. 스프라이트 뒤집기 (h가 0이 아닐 때만)
-        if (h != 0)
-        {
-            // 캐릭터의 스케일 값을 조절하여 전체를 반전시킵니다.
-            // h가 1이면 오른쪽(원래 방향), -1이면 왼쪽(반전)
-            // 주의: 유저님의 원래 스프라이트가 '왼쪽'을 보고 있다면 h > 0 ? -1 : 1 로 설정하세요.
-            float direction = (h > 0) ? -1f : 1f; 
-            transform.localScale = new Vector3(direction, 1, 1);
-        } else if (v != 0)
-        {
-            transform.localScale = new Vector3(-1f, 1, 1);
-        }
+        // 대각선 이동 방지 및 입력 처리
+        if (h != 0) moveInput = new Vector2(h, 0);
+        else if (v != 0) moveInput = new Vector2(0, v);
+        else moveInput = Vector2.zero;
 
-        // 2. 대각선 이동 방지 로직
-        if (h != 0)
-        {
-            moveInput = new Vector2(h, 0);
-        }
-        else if (v != 0)
-        {
-            moveInput = new Vector2(0, v);
-        }
-        else
-        {
-            moveInput = Vector2.zero;
-        }
-
-        // [핵심 추가] 움직임이 있을 때만 lastDir를 업데이트합니다.
-        // 이렇게 하면 캐릭터가 멈춰도 마지막 방향을 계속 기억합니다.
         if (moveInput != Vector2.zero)
         {
-            lastDir = moveInput;
+            // 장부에 마지막 방향 기록
+            data.lastDirection = moveInput;
+            
+            // 스프라이트 반전 (localScale 방식 유지)
+            float direction = (moveInput.x > 0) ? -1f : 1f;
+            if (moveInput.x != 0) transform.localScale = new Vector3(direction, 1, 1);
+            else transform.localScale = new Vector3(-1f, 1, 1); // 위/아래 이동 시 기본값
         }
 
-        // 3. 애니메이터에 값 전달
+        // 애니메이션 파라미터 전달
         if (animator != null)
         {
+            animator.SetBool("isMoving", moveInput != Vector2.zero);
             if (moveInput != Vector2.zero)
             {
                 animator.SetFloat("InputX", moveInput.x);
                 animator.SetFloat("InputY", moveInput.y);
-                animator.SetBool("isMoving", true);
             }
-            else
-            {
-                animator.SetBool("isMoving", false);
-            }
-        }
-    }
-
-    void LateUpdate()
-    {
-        if (transform.parent != null) 
-        {
-            Vector3 parentScale = transform.parent.localScale;
-            
-            // 부모 스케일의 절대값을 이용해 자식(UI)의 스케일을 보정
-            transform.localScale = new Vector3(
-                Mathf.Abs(transform.localScale.x), 
-                transform.localScale.y, 
-                transform.localScale.z
-            );
         }
     }
 
     void FixedUpdate()
     {
-        if (!canMove) 
-        {
-            rb.linearVelocity = Vector2.zero; // 속도 초기화
-            return; 
-        }
-        rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+        if (canMove && !data.isFishing)
+            rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+        else
+            rb.linearVelocity = Vector2.zero;
     }
 }

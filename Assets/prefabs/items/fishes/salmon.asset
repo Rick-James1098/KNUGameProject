@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9f5f5bc4aad040bb43e0a396db55b, type: 3}
   m_Name: salmon
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  itemName: 
+  itemName: Salmon
   icon: {fileID: -8194950737380959066, guid: b51151113078af6458da48ad0455c8f6, type: 3}
   description: 
   maxStackSize: 99

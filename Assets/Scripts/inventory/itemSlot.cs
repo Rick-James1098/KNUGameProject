@@ -1,24 +1,23 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine.Timeline;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class ItemSlot
 {
     public ItemData item;
     public int count;
 
-    // [추가] 만약 이 아이템이 '통'이라면 내부에 담긴 아이템들
-    [HideInInspector]
-    public List<ItemSlot> innerSlots; 
+    // 통 아이템일 경우 내부 아이템들 저장
+    public List<ItemSlot> innerSlots = new List<ItemSlot>(); 
 
     public ItemSlot(ItemData item, int count)
     {
         this.item = item;
         this.count = count;
         
-        // 만약 아이템이 컨테이너라면 내부 리스트 초기화
-        if (item is ContainerItemData container)
+        // 통 아이템이라면 내부 리스트를 사용할 준비를 합니다.
+        if (item is ContainerItemData)
         {
             innerSlots = new List<ItemSlot>();
         }

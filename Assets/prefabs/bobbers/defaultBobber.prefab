@@ -261,7 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c93ed0189b5e2b4fb0ea8a97d6f7115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDownBobber
+  data: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
+  fishingSystem: {fileID: 0}
   visualChild: {fileID: 3096091244007828053}
+  isSettled: 0
   arcCurve:
     serializedVersion: 2
     m_Curve:

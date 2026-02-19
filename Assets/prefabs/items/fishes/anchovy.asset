@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9f5f5bc4aad040bb43e0a396db55b, type: 3}
   m_Name: anchovy
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  itemName: 
+  itemName: Anchovy
   icon: {fileID: 3199680948678854075, guid: 3bd3b128bad0e02409bad1e464f4a6c6, type: 3}
   description: 
   maxStackSize: 99

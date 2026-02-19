@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/house/JinwooHouse.unity
     guid: 8c3f301c80640a14c80b06675d429fdb
+  - enabled: 1
+    path: Assets/Scenes/Gimic/ReelGimic.unity
+    guid: f73df776d678aa04682cc9d5e696e2c2
+  - enabled: 1
+    path: Assets/Scenes/Gimic/HarpoonGimic.unity
+    guid: fc266fb0e16bf8743bbf8bd87fd04044
+  - enabled: 1
+    path: Assets/Scenes/Gimic/HarpoonBasic.unity
+    guid: 60cfc2484cbaf2046b0cac38659207aa
+  - enabled: 1
+    path: Assets/Scenes/Gimic/ConchGimic.unity
+    guid: 93c295e8d9dbe4843b95bddf98cd2228
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

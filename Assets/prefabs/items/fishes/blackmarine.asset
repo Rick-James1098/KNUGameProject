@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9f5f5bc4aad040bb43e0a396db55b, type: 3}
   m_Name: blackmarine
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  itemName: 
+  itemName: BlackMarine
   icon: {fileID: -1288638281982392661, guid: c2f5d4e692242184d902ac4e5bd909dc, type: 3}
   description: 
   maxStackSize: 99

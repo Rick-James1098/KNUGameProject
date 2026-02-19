@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9f5f5bc4aad040bb43e0a396db55b, type: 3}
   m_Name: skipjack
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  itemName: 
+  itemName: SkipJack
   icon: {fileID: 7782362080103242341, guid: 6db6203a661b0444a98f2c770a8ec795, type: 3}
   description: 
   maxStackSize: 99

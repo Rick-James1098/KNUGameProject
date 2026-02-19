@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NewFishingGame : MonoBehaviour
@@ -43,7 +44,8 @@ public class NewFishingGame : MonoBehaviour
     public float fillSpeed = 0.2f;
     public float drainSpeed = 0.1f;
     private float currentProgress;
-
+    public string inGameSceneName = "InGameScene"; // 돌아갈 마을 씬 이름
+    public PlayerData playerData;
     private bool isGameActive = true;
 
     void Start()
@@ -249,8 +251,16 @@ public class NewFishingGame : MonoBehaviour
     void GameEnd(bool isSuccess)
     {
         isGameActive = false;
-        if (isSuccess) Debug.Log("성공!");
+        if (isSuccess) 
+        {
+            Debug.Log("성공!");
+            playerData.isBattleSuccess = isSuccess;
+        }
+
         else Debug.Log("실패!");
         // 여기에 게임 종료 후 연출이나 씬 전환 코드 추가
+
+
+        SceneManager.LoadScene(inGameSceneName);
     }
 }
