@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
 
     // UI 새로고침 알림용 이벤트
     public Action OnInventoryChanged;
+    public PlayerData playerData;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
     }
 
     /// <summary>
@@ -36,20 +38,36 @@ public class InventoryManager : MonoBehaviour
 
         bool wasAdded = false;
 
-        // 1. 물고기인 경우: 장착된 통(Bucket)에 먼저 넣기 시도
-        if (newItem is FishData && invData.equippedBucket != null)
+        // 1. 물고기인 경우 처리
+        if (newItem is FishData)
         {
-            ContainerItemData bucketData = invData.equippedBucket.item as ContainerItemData;
-            
-            // 통의 현재 수납량 확인
-            if (invData.equippedBucket.innerSlots.Count < bucketData.capacity)
+            // 장착된 통이 있다면 넣기 시도
+            if (invData.equippedBucket != null)
             {
-                wasAdded = AddItemToList(invData.equippedBucket.innerSlots, newItem, amount, bucketData.capacity);
-                if (wasAdded) Debug.Log($"{newItem.itemName}을(를) 물고기 통에 넣었습니다.");
+                ContainerItemData bucketData = invData.equippedBucket.item as ContainerItemData;
+                
+                if (invData.equippedBucket.innerSlots.Count < bucketData.capacity)
+                {
+                    wasAdded = AddItemToList(invData.equippedBucket.innerSlots, newItem, amount, bucketData.capacity);
+                    if (wasAdded) Debug.Log($"{newItem.itemName}을(를) 물고기 통에 넣었습니다.");
+                }
+                else
+                {
+                    Debug.Log("물고기 통이 꽉 찼습니다!");
+                }
             }
+            else
+            {
+                // [핵심] 통이 없으면 여기서 리턴시켜서 가방으로 못 넘어가게 함
+                Debug.LogWarning("장착된 고기통이 없어 물고기를 놓아주었습니다.");
+                return; 
+            }
+            
+            // 물고기인데 통에 넣는 걸 실패했다면(통이 꽉 찬 경우 등) 여기서 종료
+            if (!wasAdded) return;
         }
 
-        // 2. 일반 아이템이거나, 통에 넣지 못했을 경우: 메인 가방으로
+        // 2. 일반 아이템인 경우 (또는 위에서 처리되지 않은 경우만 실행)
         if (!wasAdded)
         {
             wasAdded = AddItemToList(invData.mainInventory, newItem, amount, invData.maxMainSlots);
@@ -108,16 +126,36 @@ public class InventoryManager : MonoBehaviour
     // 물고기 통 장착
     public void EquipBucket(ItemSlot bucketSlot)
     {
+        if (bucketSlot == null || bucketSlot.item == null) return;
+
         if (bucketSlot.item is ContainerItemData)
         {
-            // 기존 통이 있다면 가방으로 복구
+
+            // [수정] 만약 지금 클릭한 게 이미 장착된 통이라면? -> 해제(Unequip)로 연결
+            if (invData.equippedBucket == bucketSlot)
+            {
+                Debug.Log("이미 장착된 통입니다. 해제를 실행합니다.");
+                UnequipBucket();
+                return;
+            }
+
+            // 1. 기존에 이미 장착된 통이 있으면 가방으로 복구
             if (invData.equippedBucket != null && invData.equippedBucket.item != null)
             {
                 invData.mainInventory.Add(invData.equippedBucket);
             }
 
-            invData.equippedBucket = bucketSlot;
+            // 2. 새 통을 장착 (참조 복사)
+            invData.equippedBucket = new ItemSlot(bucketSlot.item, bucketSlot.count);
+            invData.equippedBucket.innerSlots = bucketSlot.innerSlots; // 내용물도 복사
+
+            // 3. 가방에서 해당 슬롯 제거 (참조 기반 제거가 불안하면 이렇게 하세요)
             invData.mainInventory.Remove(bucketSlot);
+
+            // 4. 데이터 갱신 알림
+            if (playerData != null) playerData.hasFishBucket = true;
+            
+            Debug.Log($"{bucketSlot.item.itemName} 장착 완료");
             OnInventoryChanged?.Invoke();
         }
     }
@@ -131,6 +169,10 @@ public class InventoryManager : MonoBehaviour
             {
                 invData.mainInventory.Add(invData.equippedBucket);
                 invData.equippedBucket = null;
+
+                // [추가] 장부에 고기통 해제됨을 기록
+                if (playerData != null) playerData.hasFishBucket = false;
+
                 OnInventoryChanged?.Invoke();
             }
         }

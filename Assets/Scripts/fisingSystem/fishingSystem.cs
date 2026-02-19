@@ -59,6 +59,13 @@ public class FishingSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // [수정] 장부를 확인해서 고기통이 없으면 리턴 (캐스팅 불가)
+            if (data != null && !data.hasFishBucket)
+            {
+                Debug.LogWarning("고기통이 장착되어 있지 않아 낚시를 할 수 없습니다!");
+                // 여기에 '고기통이 필요합니다' 같은 말풍선이나 UI 알림을 띄우면 좋습니다.
+                return; 
+            }
             isCharging = true;
             currentPower = 0f;
             powerSlider.gameObject.SetActive(true);
@@ -124,6 +131,7 @@ public class FishingSystem : MonoBehaviour
             if (Random.value <= biteChance)
             {
                 data.hookedFish = SelectRandomFish();
+                Debug.Log($"고기 결정됨: {data.hookedFish.itemName}"); // 로그를 찍어보세요!
                 if (currentBobber != null) currentBobber.SetBitingVisual(true);
                 
                 // [핵심] 장부만 갱신하면 UI는 알아서 나타납니다.

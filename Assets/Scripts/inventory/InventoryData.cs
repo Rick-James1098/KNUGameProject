@@ -11,6 +11,11 @@ public class InventoryData : ScriptableObject
     [Header("장착된 특수 보관함")]
     public ItemSlot equippedBucket; // 현재 장착 중인 물고기 통
 
+    public void OnEnable()
+    {
+        Clear();
+    }
+
     // 데이터를 깨끗이 비우는 함수 (테스트용)
     public void Clear()
     {

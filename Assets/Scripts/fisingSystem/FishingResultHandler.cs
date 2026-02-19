@@ -15,12 +15,15 @@ public class FishingResultHandler : MonoBehaviour
 
     void Start()
     {
+        Debug.Log($"보상 핸들러 작동 시작! 물고기 존재: {playerData.hookedFish != null}, 성공여부: {playerData.isBattleSuccess}");
         if (playerData.hookedFish != null && playerData.isBattleSuccess)
         {
+            Debug.Log("조건 충족! 보상을 지급합니다.");
             ReceiveReward();
         }
         else if (playerData.hookedFish != null && !playerData.isBattleSuccess)
         {
+            Debug.Log("조건 미충족으로 보상을 지급하지 않습니다.");
             playerData.ResetFishingStatus(); 
         }
     }

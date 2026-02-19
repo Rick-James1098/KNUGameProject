@@ -7,6 +7,7 @@ public class PlayerData : ScriptableObject
     public Vector2 lastDirection = Vector2.down; // 마지막으로 바라본 방향
     public bool isFishing = false;               // 찌를 던진 상태인가?
     public bool isStrikeGameActive = false;      // 챔질(ArcGame) UI가 떠야 하는가?
+    public bool hasFishBucket = false; // 고기통 장착 여부
 
     [Header("낚시 진행 데이터")]
     public GameObject currentBobber;
@@ -20,7 +21,6 @@ public class PlayerData : ScriptableObject
     {
         isFishing = false;
         isStrikeGameActive = false;
-        hookedFish = null;
         isBattleSuccess = false;
         Debug.Log("플레이어 낚시 장부가 초기화되었습니다.");
     }
@@ -30,7 +30,6 @@ public class PlayerData : ScriptableObject
     /// </summary>
     public void OnEnable()
     {
-        // 에디터에서 플레이를 누를 때마다 이전 기록이 남지 않도록 초기화
         ResetFishingStatus();
     }
 }

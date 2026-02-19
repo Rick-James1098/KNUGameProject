@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
   invData: {fileID: 11400000, guid: 97862d7d4e4408b48afc1a8dc3588b6e, type: 2}
+  playerData: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
 --- !u!4 &185284203
 Transform:
   m_ObjectHideFlags: 0
@@ -6667,6 +6668,7 @@ GameObject:
   - component: {fileID: 798569886}
   - component: {fileID: 798569885}
   - component: {fileID: 798569884}
+  - component: {fileID: 798569887}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -6735,6 +6737,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 389846188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798569887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798569883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb7a2359daad08478a84ca7bfe37a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SingletonEventSystem
 --- !u!1 &844976358 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8867630160337732654, guid: 675759cc302fe874795a7eb52c20c115, type: 3}
