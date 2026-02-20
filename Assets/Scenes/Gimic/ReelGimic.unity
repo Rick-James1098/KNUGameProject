@@ -373,6 +373,8 @@ MonoBehaviour:
   changeDestDelay: 0.5
   fillSpeed: 1
   drainSpeed: 0.1
+  inGameSceneName: InGameScene
+  playerData: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
 --- !u!4 &307272322
 Transform:
   m_ObjectHideFlags: 0

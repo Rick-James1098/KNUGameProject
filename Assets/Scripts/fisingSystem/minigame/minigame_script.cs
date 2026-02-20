@@ -166,7 +166,7 @@ public class FishingArcGame : MonoBehaviour
 
     void Fail()
     {
-        data.ResetFishingStatus();
+        data.ResetCycle();
         arcVisual.SetActive(false);
         pointerCircle.gameObject.SetActive(false);
         isDragging = false;

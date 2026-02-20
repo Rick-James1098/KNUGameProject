@@ -59,6 +59,8 @@ public class FishingSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // 진짜 장부 상태를 확인
+            Debug.Log($"클릭됨! 고기통 장착 상태: {data.hasFishBucket}");
             // [수정] 장부를 확인해서 고기통이 없으면 리턴 (캐스팅 불가)
             if (data != null && !data.hasFishBucket)
             {
@@ -174,13 +176,25 @@ public class FishingSystem : MonoBehaviour
 
     public void ResetFishingState()
     {
-        data.ResetFishingStatus();
+        data.ResetCycle();
         if (animator != null)
         {
             animator.SetBool("isFishing", false);
             animator.SetBool("isOnWater", false);
+            animator.SetBool("isCharging", false);
+            // 혹시 모르니 Trigger도 리셋
+            animator.ResetTrigger("Throw");
         }
+
+        // 2. 시각적 요소 끄기
         if (fishingTool != null) fishingTool.SetActive(false);
-        if (fishingLine != null) fishingLine.enabled = false;
+
+        // 3. 라인 렌더러 좌표 초기화 및 비활성화
+        if (fishingLine != null)
+        {
+            fishingLine.SetPosition(0, Vector3.zero);
+            fishingLine.SetPosition(1, Vector3.zero);
+            fishingLine.enabled = false;
+        }
     }
 }

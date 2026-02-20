@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -27,6 +28,17 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
+    }
+
+    void Start()
+    {
+        // 게임 시작 시 인벤토리 상황을 장부에 보고
+        SyncBucketState();
+    }
+
+    public void SyncBucketState()
+    {
+        playerData.hasFishBucket = (invData.equippedBucket != null && invData.equippedBucket.item != null);
     }
 
     /// <summary>
@@ -158,6 +170,8 @@ public class InventoryManager : MonoBehaviour
             Debug.Log($"{bucketSlot.item.itemName} 장착 완료");
             OnInventoryChanged?.Invoke();
         }
+
+        SyncBucketState();
     }
 
     // 물고기 통 해제
@@ -176,6 +190,8 @@ public class InventoryManager : MonoBehaviour
                 OnInventoryChanged?.Invoke();
             }
         }
+
+        SyncBucketState();
     }
 
     // 아이템 제거

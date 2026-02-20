@@ -17,19 +17,22 @@ public class PlayerData : ScriptableObject
     /// <summary>
     /// 한 번의 낚시 사이클이 끝났을 때 데이터를 초기화합니다.
     /// </summary>
-    public void ResetFishingStatus()
+    public void ResetCycle()
     {
         isFishing = false;
         isStrikeGameActive = false;
         isBattleSuccess = false;
-        Debug.Log("플레이어 낚시 장부가 초기화되었습니다.");
+        Debug.Log("사이클 데이터 초기화 완료 (장비는 유지)");
     }
 
     /// <summary>
-    /// 게임을 처음 시작할 때 전체적인 초기화가 필요할 경우 사용합니다.
+    /// [2] 게임 시작 시 초기화 (OnEnable에서 호출)
+    /// 에디터 잔상을 지우기 위한 용도입니다.
     /// </summary>
     public void OnEnable()
     {
-        ResetFishingStatus();
+        ResetCycle();
+        // 장착 상태도 처음엔 false로 시작 (InventoryManager가 채워줄 것임)
+        hasFishBucket = false; 
     }
 }

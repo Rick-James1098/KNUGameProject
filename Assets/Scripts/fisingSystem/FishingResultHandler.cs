@@ -24,7 +24,7 @@ public class FishingResultHandler : MonoBehaviour
         else if (playerData.hookedFish != null && !playerData.isBattleSuccess)
         {
             Debug.Log("조건 미충족으로 보상을 지급하지 않습니다.");
-            playerData.ResetFishingStatus(); 
+            playerData.ResetCycle(); 
         }
     }
 
@@ -54,6 +54,6 @@ public class FishingResultHandler : MonoBehaviour
         yield return new WaitForSeconds(2f);
         rewardUI.SetActive(false);
 
-        playerData.ResetFishingStatus();
+        playerData.ResetCycle();
     }
 }

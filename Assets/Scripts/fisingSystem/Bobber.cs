@@ -85,7 +85,7 @@ public class TopDownBobber : MonoBehaviour
         {
             // 땅이면 삭제
             Debug.Log("땅에 떨어짐");
-            if(data != null) data.ResetFishingStatus();
+            if(data != null) data.ResetCycle();
             
             if(fishingSystem != null) fishingSystem.RetrieveFishing();
             else Destroy(gameObject); // 시스템 없으면 그냥 파괴
