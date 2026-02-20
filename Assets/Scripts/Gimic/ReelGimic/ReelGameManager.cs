@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class NewFishingGame : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class NewFishingGame : MonoBehaviour
     public RectTransform fishIcon;      // 내 물고기
     public Image successGauge;          // 성공 게이지
 
-    [Header("UI References (Reel)")]
+    [Header("UI References")]
     public RectTransform handleRect;    // 회전하는 릴 몸통
     public RectTransform handleKnob;    // 잡는 손잡이
     public GameObject windingEffectObject; // 감는 이펙트
+    public GameObject readyUI; 
+    public GameObject startUI;
 
     [Header("Game Settings")]
     public float barHeight = 686f;      // 막대 전체 높이
@@ -46,7 +49,7 @@ public class NewFishingGame : MonoBehaviour
     private float currentProgress;
     public string inGameSceneName = "InGameScene"; // 돌아갈 마을 씬 이름
     public PlayerData playerData;
-    private bool isGameActive = true;
+    private bool isGameActive = false;
 
     void Start()
     {
@@ -60,6 +63,28 @@ public class NewFishingGame : MonoBehaviour
         if (windingEffectObject != null) windingEffectObject.SetActive(false);
 
         SetNewTargetDestination();
+        
+        StartCoroutine(GameReadySequence());
+    }
+
+    IEnumerator GameReadySequence()
+    {
+        // 1. 시작 전 초기화 (혹시 켜져 있을까 봐 둘 다 끕니다)
+        if (readyUI != null) readyUI.SetActive(false);
+        if (startUI != null) startUI.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+
+        // 2. Ready 이미지 켜기
+        if (readyUI != null) readyUI.SetActive(true);
+        yield return new WaitForSeconds(3f); // 1.5초 대기
+
+        // 3. Ready 끄고 Start 켜기
+        if (readyUI != null) readyUI.SetActive(false);
+        if (startUI != null) startUI.SetActive(true);
+        yield return new WaitForSeconds(0.5f); // 0.5초 대기
+
+        // 4. Start 끄고 본격적인 게임 조작 활성화
+        if (startUI != null) startUI.SetActive(false);
         
         isGameActive = true;
     }
