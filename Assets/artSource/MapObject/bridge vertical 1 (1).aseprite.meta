@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a86e78d4058cb9c41900c6d7595114fa
+guid: 5fe8ae9b780b0a94786332e88ef4d019
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -87,7 +87,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   asepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639037526350791181
+  platformSettingsDirtyTick: 639072764914913275
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: house 1
+  - name: bridge vertical 1 (1)
     originalName: 
-    pivot: {x: 0.1937799, y: -2.178899}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 418
-      height: 218
-    spriteID: 1942eaeeb7adc7041acea3aa55277f8f
+      width: 18
+      height: 33
+    spriteID: 47292d63879440044a33196fc9b4f376
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,93 +148,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData:
-  - name: house 1_0
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 88
-      width: 97
-      height: 131
-    spriteID: 303fc1e8a3a57b941bd632f8f4c9b8f5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: house 1_1
-    originalName: 
-    pivot: {x: 0.50216496, y: 0.017920898}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 190
-      y: 83
-      width: 95
-      height: 139
-    spriteID: 02a332ac4fa4ff44d9d01b5d07e7db08
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: house 1_2
-    originalName: 
-    pivot: {x: 0.4864005, y: 0.0674278}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 339
-      y: 83
-      width: 86
-      height: 106
-    spriteID: b31e20aedf79bba4ebbcc3bed2c94cbc
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+  spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1306555433
+      value0: 3195830718
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: house 1
+    name: bridge vertical 1 (1)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: house 1
+    - name: bridge vertical 1 (1)
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 431
-        y: 475
-        width: 418
-        height: 218
-      spriteId: 1942eaeeb7adc7041acea3aa55277f8f
+        x: 7
+        y: 0
+        width: 18
+        height: 33
+      spriteId: 47292d63879440044a33196fc9b4f376
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -280,5 +217,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 1024, y: 1024}
-  previousTextureSize: {x: 512, y: 256}
+  canvasSize: {x: 32, y: 33}
+  previousTextureSize: {x: 32, y: 64}

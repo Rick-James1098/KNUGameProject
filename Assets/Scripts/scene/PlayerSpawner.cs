@@ -20,6 +20,7 @@ public class PlayerSpawner : MonoBehaviour
             // 3. 위치 이동 및 확인 로그
             player.transform.position = spawnPoint.transform.position;
             Debug.Log($"[성공] {player.name}를 {spawnPoint.name} 위치({spawnPoint.transform.position})로 이동시켰습니다.");
+            SpawnManager.nextSpawnPointName = "";
         }
         else
         {

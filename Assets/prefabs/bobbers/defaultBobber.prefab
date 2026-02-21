@@ -292,7 +292,7 @@ MonoBehaviour:
   bobberHeight: 10
   maxDistance: 5
   duration: 1
-  heightMult: 2
+  heightMult: 4
   splashPrefab: {fileID: 7789435402966609339, guid: dac45599fcf1cd24fb167fe35ad264a2, type: 3}
   waterLayer:
     serializedVersion: 2

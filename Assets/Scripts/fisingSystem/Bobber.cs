@@ -48,15 +48,15 @@ public class TopDownBobber : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
-            // [핵심 복구] 
-            // 몸체(Root)는 바닥을 따라 직선 이동
+            // 1. 몸체(Root)는 바닥을 따라 직선 이동 (기존과 동일)
             transform.position = Vector2.Lerp(start, target, t);
 
-            // 그림(Visual)은 위로 솟구침 (이 부분이 빠져서 바닥을 기어갔던 것!)
-            // t가 0~1로 갈 때 Curve값에 따라 y축이 변함
-            float h = Mathf.Lerp(bobberHeight, 0, t) + (arcCurve.Evaluate(t) * heightMult);
+            // 2. [수정됨] 그림(Visual)은 완벽한 포물선(중력)을 그리며 이동
+            // Lerp: 손 높이(bobberHeight)에서 시작해 수면(0)으로 부드럽게 떨어짐
+            // Sin: t가 0~1로 갈 때 0 -> 1 -> 0이 되면서 위로 솟구쳤다 떨어지는 완벽한 곡선 생성
+            float h = Mathf.Lerp(bobberHeight, 0, t) + (Mathf.Sin(t * Mathf.PI) * heightMult);
             
-            // 로컬 좌표 y에 적용해서 점프하는 것처럼 보이게 함
+            // 로컬 좌표 y에 적용해서 자연스럽게 점프하는 것처럼 보이게 함
             visualChild.localPosition = new Vector2(0, h);
 
             yield return null;
