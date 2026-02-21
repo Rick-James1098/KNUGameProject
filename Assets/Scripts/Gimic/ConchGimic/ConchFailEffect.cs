@@ -8,8 +8,19 @@ public class ConchFailEffect : MonoBehaviour
     public float gravity = 20.0f;   // 중력 가속도 (클수록 빨리 떨어짐)
     public float bounceFactor = 0.5f; // 바닥에 닿았을 때 튀어 오르는 정도 (0 ~ 1)
     
+    public AudioSource audioSource;
+    public AudioClip failedAudio;
+    
     void Start()
     {
+        if (audioSource != null)
+        {
+            if (failedAudio != null)
+            {
+                audioSource.PlayOneShot(failedAudio);
+            }
+        }
+        
         // 시작하자마자 떨어지는 코루틴 실행
         StartCoroutine(DropRoutine());
     }

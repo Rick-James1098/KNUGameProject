@@ -7,11 +7,14 @@ public class EndingEffect : MonoBehaviour
     public int bounceCount = 2;     // 몇 번 튈지 (2번)
     public float jumpHeight = 1.5f; // 얼마나 높게 뛸지
     public float duration = 0.4f;   // 한 번 뛰는 데 걸리는 시간
+    public AudioSource audioSource;
+    public AudioClip successAudio;
 
     void Start()
     {
         // 등장하자마자 튀기 시작
         StartCoroutine(BounceRoutine());
+        audioSource.PlayOneShot(successAudio);
     }
 
     IEnumerator BounceRoutine()

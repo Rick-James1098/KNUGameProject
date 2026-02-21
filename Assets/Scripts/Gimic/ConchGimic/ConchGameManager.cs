@@ -9,6 +9,9 @@ public class ConchGameManager : MonoBehaviour
     public GameObject clickTarget; // 클릭할 원 프리팹 연
     public Vector2 minPosition;   // 생성 범위 최소 (좌측 하단)
     public Vector2 maxPosition;   // 생성 범위 최대 (우측 상단)
+    public AudioSource audioSource;
+    public AudioClip countdownAudio;
+    public AudioClip startAudio;
 
     [Header("Difficulty Balance")]
     public AnimationCurve difficultyCurve;
@@ -51,10 +54,11 @@ public class ConchGameManager : MonoBehaviour
         if (readyPrefab != null)
         {
             readyObj = Instantiate(readyPrefab, Vector3.zero, Quaternion.identity);
+            audioSource.PlayOneShot(countdownAudio);
         }
 
         // 3. 3초 대기 (준비 화면 보여주는 시간)
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(3.3f);
 
         // 4. '준비' 삭제하고 '시작' 프리팹 생성
         if (readyObj != null) Destroy(readyObj);
@@ -63,6 +67,7 @@ public class ConchGameManager : MonoBehaviour
         if (startPrefab != null)
         {
             startObj = Instantiate(startPrefab, Vector3.zero, Quaternion.identity);
+            audioSource.PlayOneShot(startAudio);
         }
 
         // 5. 0.5초 대기 (시작 문구 보여주는 시간)

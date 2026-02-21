@@ -10,6 +10,8 @@ public class TabController : MonoBehaviour
 
     [Header("Effects")]
     public GameObject clickEffectPrefab;
+    public AudioSource audioSource; 
+    public AudioClip clickAudio;
 
     public void Setup(ConchGameManager gm, float speedMultiplier)
     {
@@ -31,6 +33,14 @@ public class TabController : MonoBehaviour
         if (isClicked) return; // 이미 클릭했으면 무시
 
         isClicked = true;
+        
+        if (audioSource != null)
+        {
+            if (isClicked && clickAudio != null)
+            {
+                AudioSource.PlayClipAtPoint(clickAudio, transform.position);
+            }
+        }
 
         if (clickEffectPrefab != null)
         {
@@ -39,10 +49,8 @@ public class TabController : MonoBehaviour
             Destroy(effect, 0.4f);
         }
 
-        // 매니저에게 "나 잡혔어!" 보고
         manager.OnClicked(gameObject.transform.position);
 
-        // 즉시 삭제 (또는 클릭 성공 이펙트 재생 후 삭제)
         Destroy(gameObject);
     }
 
@@ -51,13 +59,10 @@ public class TabController : MonoBehaviour
         // 2. 설정된 시간(애니메이션 길이)만큼 대기
         yield return new WaitForSeconds(lifeTime);
 
-        // 3. 시간이 다 될 때까지 클릭 안 당했으면?
         if (!isClicked)
         {
-            // 매니저에게 "나 사라질게, 다음 거 준비해" 보고
             manager.OnMissed();
             
-            // 삭제
             Destroy(gameObject);
         }
     }
