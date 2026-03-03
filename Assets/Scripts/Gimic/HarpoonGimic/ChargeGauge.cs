@@ -28,8 +28,6 @@ public class StackGauge : MonoBehaviour
 
     [Header("Audio Settings")]
     public AudioSource audioSource; // 효과음을 재생할 오디오 소스
-    public AudioClip successAudio;     // 성공했을 때 소리 (띵동!)
-    public AudioClip failAudio;        // 실패했을 때 소리 (띠~!)
 
     public void SetRandomTarget()
     {
@@ -99,18 +97,6 @@ public class StackGauge : MonoBehaviour
     {
         // 정확히 목표 칸에 멈췄는지 확인
         bool isSuccess = (currentFillAmount >= targetMinAmount && currentFillAmount <= targetMaxAmount); // +1은 인덱스 차이 보정
-
-        if (audioSource != null)
-        {
-            if (isSuccess && successAudio != null)
-            {
-                audioSource.PlayOneShot(successAudio);
-            }
-            else if (!isSuccess && failAudio != null)
-            {
-                audioSource.PlayOneShot(failAudio);
-            }
-        }
 
         if (harpoon != null && gameManager.isStarted == true)
         {
