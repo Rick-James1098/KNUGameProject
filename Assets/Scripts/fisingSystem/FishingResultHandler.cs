@@ -77,7 +77,7 @@ public class FishingResultHandler : MonoBehaviour
         InventoryManager.Instance?.AddItem(playerData.hookedFish);
 
         // 2. UI에 물고기 정보 세팅
-        FishData data = playerData.hookedFish;
+        FishDataFormat data = playerData.hookedFish;
         if (fishIconImage != null) fishIconImage.sprite = data.icon;
         if (fishName != null) fishName.text = data.name;
 
