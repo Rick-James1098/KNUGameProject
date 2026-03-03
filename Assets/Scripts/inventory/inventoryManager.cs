@@ -51,7 +51,7 @@ public class InventoryManager : MonoBehaviour
         bool wasAdded = false;
 
         // 1. 물고기인 경우 처리
-        if (newItem is FishData)
+        if (newItem is FishDataFormat)
         {
             // 장착된 통이 있다면 넣기 시도
             if (invData.equippedBucket != null)

@@ -22,6 +22,8 @@ public class BasicHarpoon : MonoBehaviour
 
     [Header("Effects")]
     public GameObject hitEffect; 
+    public AudioSource audioSource;
+    public AudioClip shotAudio;
 
     [Header("Rope Settings")]
     public GameObject ropePrefab;      // 만들어둔 RopeSystem 프리팹
@@ -72,6 +74,7 @@ public class BasicHarpoon : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isFired = true; // 이제부터는 발사 모드로 전환
+                audioSource.PlayOneShot(shotAudio);
             }
         }
     }

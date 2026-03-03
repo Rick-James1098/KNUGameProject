@@ -34,11 +34,11 @@ public class FishingResultHandler : MonoBehaviour
         InventoryManager.Instance?.AddItem(playerData.hookedFish);
 
         // 2. UI 데이터 세팅 (이 부분이 핵심!)
-        FishData data = playerData.hookedFish;
+        FishDataFormat data = playerData.hookedFish;
         if (data != null)
         {
             fishIcon.sprite = data.icon; // FishData에 있는 이미지 적용
-            fishName.text = data.name;     // FishData에 있는 이름 적용
+            fishName.text = data.itemName;     // FishData에 있는 이름 적용
             
             // 등급이 있다면 색상이나 텍스트를 다르게 줄 수도 있어!
             // fishRarity.text = data.rarity.ToString();

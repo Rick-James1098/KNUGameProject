@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class FishingSystem : MonoBehaviour
 {
     [Header("Data Reference")]
     public PlayerData data;
+    public FishSelector fishSelector;
 
     [Header("참조")]
     public Transform rodTip;
@@ -132,29 +135,40 @@ public class FishingSystem : MonoBehaviour
         {
             if (Random.value <= biteChance)
             {
-                data.hookedFish = SelectRandomFish();
+                FishDataFormat selectedFish = fishSelector.GetRandomFish(data.GetPlayerLuck());
+                data.hookedFish = selectedFish;
+
+                if (currentBobber != null) currentBobber.SetBitingVisual(true);
+                data.isStrikeGameActive = true;
+
+                yield break;
+
+                /*data.hookedFish = SelectRandomFish();
                 Debug.Log($"고기 결정됨: {data.hookedFish.itemName}"); // 로그를 찍어보세요!
                 if (currentBobber != null) currentBobber.SetBitingVisual(true);
                 
                 // [핵심] 장부만 갱신하면 UI는 알아서 나타납니다.
                 data.isStrikeGameActive = true; 
-                yield break; 
+                yield break; */
             }
             yield return new WaitForSeconds(1.0f);
         }
     }
-
+    
     private FishData SelectRandomFish()
     {
         int totalWeight = 0;
         foreach (var f in fishPool) totalWeight += f.rarityWeight;
         int pivot = Random.Range(0, totalWeight);
         int current = 0;
+        fishSelector.GetRandomFish(data.GetPlayerLuck());
+        
         foreach (var f in fishPool)
         {
             current += f.rarityWeight;
             if (pivot < current) return f;
         }
+
         return fishPool[0];
     }
 

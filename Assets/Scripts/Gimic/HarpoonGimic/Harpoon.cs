@@ -13,7 +13,9 @@ public class Harpoon : MonoBehaviour
     public float tailOffset = 2.0f;
 
     [Header("Effects")]
-    public GameObject hitEffect; // [추가] 피 이펙트 프리팹 연결
+    public GameObject hitEffect;
+    public AudioSource audioSource;
+    public AudioClip shootAudio;
 
     [Header("Rope System")]
     public GameObject ropePrefab;      
@@ -82,6 +84,8 @@ public class Harpoon : MonoBehaviour
 
         // 1초 뒤 발사 시작!
         isLaunched = true;
+
+        audioSource.PlayOneShot(shootAudio);
 
         if (animator != null)
         {
