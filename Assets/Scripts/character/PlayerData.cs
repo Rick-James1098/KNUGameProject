@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Filters;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,14 +10,22 @@ public class PlayerData : ScriptableObject
     public bool isFishing = false;               // 찌를 던진 상태인가?
     public bool isStrikeGameActive = false;      // 챔질(ArcGame) UI가 떠야 하는가?
     public bool hasFishBucket = false; // 고기통 장착 여부
+    private bool isLuckDoped = false;
 
     [Header("낚시 진행 데이터")]
     public GameObject currentBobber;
-    public FishData hookedFish;                  // 현재 바늘에 걸린 물고기 정보
+    public FishDataFormat hookedFish;                  // 현재 바늘에 걸린 물고기 정보
     public bool isBattleSuccess = false;         // 배틀(릴링) 게임 성공 여부
-
     [Header("경제 시스템")]
     public int gold;
+
+    [Header("스탯")]
+    private int luck = 100;
+    private int technic = 0;
+    private float rodSkill = 0f;
+    private float harpoonSkill = 0f;
+    private float conchSkill = 0f;
+    private int dopingLuck = 0;
 
     /// <summary>
     /// 한 번의 낚시 사이클이 끝났을 때 데이터를 초기화합니다.
@@ -38,5 +47,10 @@ public class PlayerData : ScriptableObject
         ResetCycle();
         // 장착 상태도 처음엔 false로 시작 (InventoryManager가 채워줄 것임)
         hasFishBucket = false; 
+    }
+
+    public int GetPlayerLuck()
+    {
+        return luck;
     }
 }

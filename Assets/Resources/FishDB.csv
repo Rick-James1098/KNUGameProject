@@ -1,0 +1,51 @@
+Fish_ID,Name,Max_Rarity,Min_Rarity,Max_Resistance,Min_Resistance,Max_Price,Min_Price,Equipment,Map
+1,Guppy,5,1,45,30,230,80,,Forest
+2,Anchovy,5,1,45,30,200,100,,Blue_Ocean
+3,Sea urchin,5,5,45,45,200,200,,Blue_Ocean
+4,Cod,6,2,50,32,210,120,,Blue_Ocean
+5,Pale chub,6,2,45,32,200,120,,Forest
+6,Scallop,8,1,55,30,250,110,,Blue_Ocean
+7,Medaka,10,3,60,31,250,130,,Forest
+8,Sea cucumber,10,10,60,60,250,250,,Green_Ocean
+9,Moray eel,17,11,85,60,450,260,,Red_Ocean
+10,Korean bullhead,18,12,90,60,500,255,,Forest
+11,Shrimp,19,13,89,69,510,300,,Red_Ocean
+12,Jellyfish,20,10,70,50,300,200,,Red_Ocean
+13,Chinese weather loach,20,15,100,85,800,500,,Forest
+14,Carp,21,16,95,80,710,410,,Forest
+15,Sea bream,24,14,100,70,810,320,,Red_Ocean
+16,Crucian carp,25,15,108,72,810,300,,Forest
+17,Northern snakehead,27,20,111,88,840,520,,Forest
+18,Trout,28,22,118,99,1000,750,,Forest
+19,Blue tang,29,19,119,89,990,600,,Blue_Ocean
+20,Anemone clownfish,30,20,120,90,1000,610,,Blue_Ocean
+21,Pike ,31,22,120,100,850,750,,Forest
+22,Catfish,33,30,130,120,1210,1000,,Forest
+23,Squid,35,28,138,118,1320,990,,Blue_Ocean
+24,Bluegill,37,31,144,122,1400,990,,Forest
+25,Blowfish,38,32,142,125,1500,1100,,Green_Ocean
+26,Salmon,40,30,145,120,1460,1050,,Blue_Ocean
+27,Piranha,41,32,158,125,1510,1030,,Forest
+28,Flounder,44,33,166,133,1580,1230,,Blue_Ocean
+29,Longarm octopus,47,41,155,155,1480,1480,,Green_Ocean
+30,Octopus,50,40,185,155,2100,1500,,Blue_Ocean
+31,Venus clam,50,50,180,180,2000,2000,,Red_Ocean
+32,Abalone,51,51,150,150,2020,2020,,Blue_Ocean
+33,Ray,52,50,190,185,2170,2140,,Green_Ocean
+34,Ayu sweetfish,55,51,200,185,2530,2150,,Forest
+35,Mandarinfish,58,51,204,180,2290,2010,,Blue_Ocean
+36,Swordfish,60,45,230,160,2800,1750,,Blue_Ocean
+37,Striped marlin,60,45,230,160,2800,1750,,Green_Ocean
+38,Black marlin,60,45,230,160,2800,1750,,Red_Ocean
+39,Sailfish,60,45,230,160,2800,1750,,Green_Ocean
+40,Albacore,70,60,260,220,3210,2750,,Blue_Ocean
+41,Yellowfin,70,60,260,220,3210,2750,,Green_Ocean
+42,Skipjack,70,60,260,220,3210,2750,,Red_Ocean
+43,Electric eel,72,72,250,250,3000,3000,,Red_Ocean
+44,Blobfish,77,44,265,152,3150,1440,,Green_Ocean
+45,Sufi,77,77,280,280,3777,3777,,Green_Ocean
+46,Anglerfish,80,55,280,200,4400,2600,,Red_Ocean
+47,Sturgeon,90,80,310,275,5000,4500,,Blue_Ocean
+48,Koi,99,99,300,300,9999,9999,,Forest
+49,Goldfish,99,99,240,240,2424,2424,,Forest
+50,Masu salmon,65,65,230,230,3000,3000,,Forest
