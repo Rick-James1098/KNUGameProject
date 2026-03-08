@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ShopInteraction : MonoBehaviour
 {
-    public ShopManager shopManager; // 연결할 상점 매니저
     public GameObject interactionKeyUI; // "Space: 상점 열기" 말풍선 UI (선택사항)
 
     private bool isPlayerNear = false;
@@ -11,15 +10,8 @@ public class ShopInteraction : MonoBehaviour
     {
         // 플레이어가 근처에 있고, 스페이스바를 눌렀으며, 상점이 안 열려있을 때
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!shopManager.shopPanel.activeSelf)
-            {
-                shopManager.OpenShop();
-            }
-            else
-            {
-                shopManager.CloseShop();
-            }
+        {// [수정] 드래그 연결 대신, 살아있는 Instance를 직접 부름
+            ShopManager.Instance.OpenShop();
         }
     }
 
@@ -37,7 +29,7 @@ public class ShopInteraction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
-            shopManager.CloseShop(); // 멀어지면 자동으로 닫기
+            ShopManager.Instance.CloseShop(); // 멀어지면 자동으로 닫기
             if (interactionKeyUI != null) interactionKeyUI.SetActive(false);
         }
     }

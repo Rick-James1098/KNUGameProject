@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
 {
+    // 전 세계 어디서든 접근 가능한 '유일한 나'
+    public static ShopManager Instance;
+
     [Header("데이터 연결")]
     public PlayerData playerData;
     public InventoryManager inventoryManager;
@@ -17,6 +20,20 @@ public class ShopManager : MonoBehaviour
     public ShopDetailsPanel detailsPanel; // 위에서 만든 스크립트 연결
     public GameObject buyButtonObject;    // 구매 버튼 (비활성화 관리용)
 
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 나 죽이지 마
+        }
+        else
+        {
+            // 씬 다시 로드될 때 또 생긴 '가짜'는 죽여버림
+            Destroy(gameObject); 
+        }
+    }
     private void Start()
     {
         shopPanel.SetActive(false);
