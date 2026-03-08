@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: yellowFish
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   itemName: YellowFish
+  itemType: 3
   icon: {fileID: 6824087263931714186, guid: 333232101b6f33047974335c1bbae5dc, type: 3}
   description: 
   maxStackSize: 99

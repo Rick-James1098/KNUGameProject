@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ba33b82ad575f429ad7724022b0b79, type: 3}
+  m_Name: Rod
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: Basic Rod
+  itemType: 0
+  icon: {fileID: 1025193210404246080, guid: bdd014c81ea0c034ba819768157168f9, type: 3}
+  description: "\uAE30\uBCF8 \uB09A\uC2EF\uB300"
+  maxStackSize: 99
+  price: 1000

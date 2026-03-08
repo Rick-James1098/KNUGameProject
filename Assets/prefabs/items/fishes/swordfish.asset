@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: swordfish
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   itemName: SwordFish
+  itemType: 3
   icon: {fileID: 8730106999682522972, guid: 6503819fa91341b4e8d2a02c9e457c2f, type: 3}
   description: 
   maxStackSize: 99

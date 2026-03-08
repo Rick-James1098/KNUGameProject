@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: anchovy
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   itemName: Anchovy
+  itemType: 3
   icon: {fileID: 3199680948678854075, guid: 3bd3b128bad0e02409bad1e464f4a6c6, type: 3}
   description: 
   maxStackSize: 99

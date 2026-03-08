@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: blackmarine
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   itemName: BlackMarine
+  itemType: 3
   icon: {fileID: -1288638281982392661, guid: c2f5d4e692242184d902ac4e5bd909dc, type: 3}
-  description: 
+  description: rareFish
   maxStackSize: 99
-  price: 0
+  price: 2000
   rarityWeight: 10
   difficulty: 0

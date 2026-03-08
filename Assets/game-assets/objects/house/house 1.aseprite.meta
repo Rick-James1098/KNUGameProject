@@ -172,7 +172,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: house 1_1
     originalName: 
-    pivot: {x: 0.50216496, y: 0.017920898}
+    pivot: {x: 0.50216496, y: 0.031433765}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

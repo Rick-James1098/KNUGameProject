@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class FishingSystem : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class FishingSystem : MonoBehaviour
 
     private void HandleInput()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             // 진짜 장부 상태를 확인

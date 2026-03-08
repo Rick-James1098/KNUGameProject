@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: cod
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   itemName: Cod
+  itemType: 3
   icon: {fileID: 4155342249492191930, guid: af4add9807ad7c347969e97825eaf50d, type: 3}
   description: 
   maxStackSize: 99

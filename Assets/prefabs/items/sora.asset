@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: sora
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: sora
+  itemType: 0
   icon: {fileID: -6006706027034455496, guid: 67c2c45531835944a9d509590522cba8, type: 3}
-  description: 
+  description: "\uC88B\uB098 \uB9C8\uBC95\uC758 \uC18C\uB77C\uACE0\uB3D9"
   maxStackSize: 99
-  price: 100
+  price: 200

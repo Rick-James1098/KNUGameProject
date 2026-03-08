@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "FishingGame/Player Data")]
@@ -13,6 +14,9 @@ public class PlayerData : ScriptableObject
     public GameObject currentBobber;
     public FishData hookedFish;                  // 현재 바늘에 걸린 물고기 정보
     public bool isBattleSuccess = false;         // 배틀(릴링) 게임 성공 여부
+
+    [Header("경제 시스템")]
+    public int gold;
 
     /// <summary>
     /// 한 번의 낚시 사이클이 끝났을 때 데이터를 초기화합니다.

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: albacore
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   itemName: Albacore
+  itemType: 3
   icon: {fileID: 5085340434473216325, guid: 8f7c5abfc528d874182425f7ccb2231d, type: 3}
   description: 
   maxStackSize: 99
