@@ -154,23 +154,6 @@ public class FishingSystem : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
     }
-    
-    private FishData SelectRandomFish()
-    {
-        int totalWeight = 0;
-        foreach (var f in fishPool) totalWeight += f.rarityWeight;
-        int pivot = Random.Range(0, totalWeight);
-        int current = 0;
-        fishSelector.GetRandomFish(data.GetPlayerLuck());
-        
-        foreach (var f in fishPool)
-        {
-            current += f.rarityWeight;
-            if (pivot < current) return f;
-        }
-
-        return fishPool[0];
-    }
 
     void UpdateFishingLine()
     {
