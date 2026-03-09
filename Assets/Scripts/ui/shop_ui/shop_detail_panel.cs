@@ -8,7 +8,7 @@ public class ShopDetailsPanel : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI typeText;
     public TextMeshProUGUI descText;
-    public TextMeshProUGUI pricePerUnitText; // 개당 가격
+    // public TextMeshProUGUI pricePerUnitText; // 개당 가격
 
     [Header("수량 조절 UI")]
     public TextMeshProUGUI quantityText;
@@ -40,7 +40,7 @@ public class ShopDetailsPanel : MonoBehaviour
         nameText.text = item.itemName;
         typeText.text = item.itemType.ToString(); // 타입 표시
         descText.text = item.description;
-        pricePerUnitText.text = $"{item.price:N0} G";
+        // pricePerUnitText.text = $"{item.price:N0} G";
 
         UpdateQuantityUI();
         
@@ -83,7 +83,7 @@ public class ShopDetailsPanel : MonoBehaviour
         nameText.text = "";
         typeText.text = "";
         descText.text = "";
-        pricePerUnitText.text = "";
+        // pricePerUnitText.text = "";
         
         // 3. 수량/가격 텍스트 비우기
         quantityText.text = "";

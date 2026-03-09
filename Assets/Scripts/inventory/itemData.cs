@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 public enum ItemType {Rod, Conch, Harpoon, Fish}
 
 // 이 클래스는 부모 역할만 하므로 CreateAssetMenu를 굳이 안 넣어도 됩니다.
