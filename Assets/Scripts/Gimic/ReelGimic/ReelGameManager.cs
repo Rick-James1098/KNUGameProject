@@ -20,16 +20,16 @@ public class NewFishingGame : MonoBehaviour
 
     [Header("Game Settings")]
     public float barHeight = 686f;      // 막대 전체 높이
-    public float startProgress = 0.3f;  // 시작 게이지 (30%)
+    public float startProgress = 0.4f;  // 시작 게이지 (30%)
     public float grabRadius = 80f;     // 손잡이 잡는 판정 범위
     public float reelSensitivity = 0.5f; // 회전 감도 (클수록 조금 돌려도 많이 움직임)
     public float effectRotateMultiplier = 2.0f; // 이펙트 회전 속도
 
     [Header("Fish Physics")]
     private float fishPosition = 0f;     // 현재 물고기 Y 위치
-    public float acceleration = 5.0f;
+    public float acceleration = 2.0f;
     public float resistance = 2.0f;
-    public float maxSpeed = 1000f;
+    public float maxSpeed = 500f;
     private float currentVelocity = 0f;
 
     // 릴 회전 계산용 변수
@@ -37,7 +37,7 @@ public class NewFishingGame : MonoBehaviour
     private bool isDragging = false;
 
     [Header("Target AI")]
-    public float targetMoveSpeed = 100f; // 타겟 이동 속도 (픽셀/초)
+    public float targetMoveSpeed = 80f; // 타겟 이동 속도 (픽셀/초)
     public float changeDestDelay = 0.5f; // 목적지 도착 후 대기 시간
     private float targetPosition = 0f;
     private float targetDestination = 0f;
@@ -60,7 +60,7 @@ public class NewFishingGame : MonoBehaviour
         
         float rawResistance = playerData.hookedFish.currentResistance;
         float calculatedDifficulty = rawResistance - (playerData.technic + playerData.rodSkill);
-        calculatedDifficulty = Mathf.Max(0f, calculatedDifficulty);
+        calculatedDifficulty = 150; //Mathf.Max(0f, calculatedDifficulty);
         difficultyPercent = calculatedDifficulty / 340f;
         difficultyPercent = Mathf.Clamp01(difficultyPercent);
 
@@ -68,12 +68,12 @@ public class NewFishingGame : MonoBehaviour
         float randomHeight = Mathf.Lerp(155f, 55f, difficultyPercent);
         targetArea.sizeDelta = new Vector2(targetArea.sizeDelta.x, randomHeight);
 
-        fillSpeed = Mathf.Lerp(0.3f, 0.1f, difficultyPercent);
-        drainSpeed = Mathf.Lerp(0.1f, 0.3f, difficultyPercent);
+        fillSpeed = Mathf.Lerp(0.35f, 0.2f, difficultyPercent);
+        drainSpeed = Mathf.Lerp(0.1f, 0.2f, difficultyPercent);
         
         if (windingEffectObject != null) windingEffectObject.SetActive(false);
 
-        Debug.Log($"Resistance: {rawResistance} / technic: {playerData.technic} / rodSkill: {playerData.rodSkill}");
+        Debug.Log($"Resistance: {rawResistance} / technic: {playerData.technic} / rodSkill: {playerData.rodSkill} / difficulty: {calculatedDifficulty}");
 
         SetNewTargetDestination();
         
@@ -112,7 +112,6 @@ public class NewFishingGame : MonoBehaviour
         UpdateUI();
     }
 
-    // --- [1] 릴 회전 로직 (복구됨) ---
     void HandleReelInput()
     {
         // 마우스 클릭 시 손잡이 근처인지 확인
@@ -218,11 +217,11 @@ public class NewFishingGame : MonoBehaviour
         targetDestination = Random.Range(0f, barHeight - targetArea.rect.height - 2f);
         
         // 랜덤 대기 시간 설정 (0초 ~ 0.5초 사이로 짧게)
-        float maxWait = Mathf.Lerp(0.5f, 0.01f, difficultyPercent);
-        aiWaitTimer = Random.Range(0.0f, maxWait);
+        float maxWait = Mathf.Lerp(0.3f, 0.1f, difficultyPercent);
+        aiWaitTimer = Random.Range(0.1f, maxWait);
         
-        float minSpeed = Mathf.Lerp(300f, 700f, difficultyPercent);
-        float maxSpeed = Mathf.Lerp(500f, 1100f, difficultyPercent);
+        float minSpeed = Mathf.Lerp(300f, 500f, difficultyPercent);
+        float maxSpeed = Mathf.Lerp(500f, 700f, difficultyPercent);
         targetMoveSpeed = Random.Range(minSpeed, maxSpeed);
     }
 

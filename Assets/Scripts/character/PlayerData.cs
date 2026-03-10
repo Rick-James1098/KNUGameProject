@@ -20,12 +20,13 @@ public class PlayerData : ScriptableObject
     public int gold;
 
     [Header("스탯")]
-    public int luck = 100;
-    public int technic = 0;
-    public float rodSkill = 0f;
-    public float harpoonSkill = 0f;
-    public float conchSkill = 0f;
-    public int dopingLuck = 0;
+    public int luck = 100;              // 0~220
+    public int technic = 90;             // 0~180
+    public float rodSkill = 25f;         // 0~50
+    public float harpoonSkill = 0f;     // 0~50
+    public float conchSkill = 0f;       // 0~50
+    public int dopingLuck = 0;          // 0~30
+    public int dopingTechnic = 0;       // 0~20
 
     /// <summary>
     /// 한 번의 낚시 사이클이 끝났을 때 데이터를 초기화합니다.

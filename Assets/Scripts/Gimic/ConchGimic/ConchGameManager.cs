@@ -12,13 +12,10 @@ public class ConchGameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip countdownAudio;
     public AudioClip startAudio;
-
-    [Header("Difficulty Balance")]
-    public AnimationCurve difficultyCurve;
-
+    public PlayerData playerData;
     private float currentTime;       // 현재 남은 시간
     private bool isPlaying = false;  // 게임 진행 중인지 여부
-    private float difficulty = 10f;
+    private float difficulty;
     private float count = 0f;
     private float targetCount;
 
@@ -80,12 +77,17 @@ public class ConchGameManager : MonoBehaviour
     }
 
     void StartGame()
-    {
-        float randomRoll = UnityEngine.Random.value;
-        difficulty = difficultyCurve.Evaluate(randomRoll);
+    {   
+        float rawResistance = 50; //playerData.hookedFish.currentResistance;
+        float calculatedDifficulty = rawResistance - (playerData.technic + playerData.conchSkill + playerData.dopingTechnic);
+        calculatedDifficulty = 135;//Mathf.Clamp(calculatedDifficulty, 0f, 340f);
+
+        float difficultyPercent = calculatedDifficulty / 340f;
+        difficulty = Mathf.Lerp(1.5f, 10f, difficultyPercent);
         targetCount = (float)Truncate(UnityEngine.Random.Range(10f, 20f));
         currentTime = (0.029f * difficulty * difficulty + 1f) * targetCount;
-        Debug.Log("difficulty: " + difficulty + " target count: " + targetCount + " time limit: " + currentTime);
+
+        Debug.Log($"difficulty: {calculatedDifficulty} / changed_difficulty: {difficulty} / target count: {targetCount} / time limit: {currentTime}");
         isPlaying = true;
         if (scoreText != null)
         {
