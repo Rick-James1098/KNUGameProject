@@ -14,6 +14,14 @@ public class FishDataFormat : ItemData
     public int maxResistance;   // 최대 저항값
     public string equipment;
     public string map;
+    public int currentResistance;
+    public int currentRarity;
+    public int currentPrice;
+
+    public FishDataFormat Clone()
+    {
+        return (FishDataFormat)this.MemberwiseClone();
+    }
 }
 
 public class FishDataManager : MonoBehaviour

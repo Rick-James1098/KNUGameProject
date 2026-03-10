@@ -50,17 +50,30 @@ public class NewFishingGame : MonoBehaviour
     public string inGameSceneName = "InGameScene"; // 돌아갈 마을 씬 이름
     public PlayerData playerData;
     private bool isGameActive = false;
+    private float difficultyPercent = 0f;
 
     void Start()
     {
         currentProgress = startProgress;
         fishPosition = 0f;
         targetPosition = barHeight / 2f;
+        
+        float rawResistance = playerData.hookedFish.currentResistance;
+        float calculatedDifficulty = rawResistance - (playerData.technic + playerData.rodSkill);
+        calculatedDifficulty = Mathf.Max(0f, calculatedDifficulty);
+        difficultyPercent = calculatedDifficulty / 340f;
+        difficultyPercent = Mathf.Clamp01(difficultyPercent);
 
-        float randomHeight = Random.Range(55f, 155f);
+        resistance = Mathf.Lerp(1.0f, 4.0f, difficultyPercent);
+        float randomHeight = Mathf.Lerp(155f, 55f, difficultyPercent);
         targetArea.sizeDelta = new Vector2(targetArea.sizeDelta.x, randomHeight);
+
+        fillSpeed = Mathf.Lerp(0.3f, 0.1f, difficultyPercent);
+        drainSpeed = Mathf.Lerp(0.1f, 0.3f, difficultyPercent);
         
         if (windingEffectObject != null) windingEffectObject.SetActive(false);
+
+        Debug.Log($"Resistance: {rawResistance} / technic: {playerData.technic} / rodSkill: {playerData.rodSkill}");
 
         SetNewTargetDestination();
         
@@ -205,9 +218,12 @@ public class NewFishingGame : MonoBehaviour
         targetDestination = Random.Range(0f, barHeight - targetArea.rect.height - 2f);
         
         // 랜덤 대기 시간 설정 (0초 ~ 0.5초 사이로 짧게)
-        aiWaitTimer = Random.Range(0.0f, 0.2f);
+        float maxWait = Mathf.Lerp(0.5f, 0.01f, difficultyPercent);
+        aiWaitTimer = Random.Range(0.0f, maxWait);
         
-        targetMoveSpeed = Random.Range(400f, 800f);
+        float minSpeed = Mathf.Lerp(300f, 700f, difficultyPercent);
+        float maxSpeed = Mathf.Lerp(500f, 1100f, difficultyPercent);
+        targetMoveSpeed = Random.Range(minSpeed, maxSpeed);
     }
 
     // --- [3] 판정 로직 ---

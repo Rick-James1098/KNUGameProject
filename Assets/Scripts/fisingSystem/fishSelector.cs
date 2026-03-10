@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FishSelector : MonoBehaviour
@@ -55,13 +56,30 @@ public class FishSelector : MonoBehaviour
         if (candidateFish.Count > 0)
         {
             int randomIndex = Random.Range(0, candidateFish.Count);
-            Debug.Log("Luck: " + playerLuck + " / Rarity: " + targetRarity + " / Probability: " + (rarityWeights[targetRarity] / totalRarityWeight) * 100f + " / Selected Fish: " + candidateFish[randomIndex].itemName);
-            return candidateFish[randomIndex];
+            FishDataFormat caughtFish = candidateFish[randomIndex].Clone();
+            caughtFish.currentRarity = targetRarity;
+            
+            float ratio = 0f;
+            if (caughtFish.maxRarity > caughtFish.minRarity) 
+            {
+                ratio = (float)(targetRarity - caughtFish.minRarity) / (caughtFish.maxRarity - caughtFish.minRarity);
+            }
+
+            caughtFish.currentResistance = caughtFish.minResistance + Mathf.RoundToInt((caughtFish.maxResistance - caughtFish.minResistance) * ratio);
+            caughtFish.currentPrice = caughtFish.minPrice + Mathf.RoundToInt((caughtFish.maxPrice - caughtFish.minPrice) * ratio);
+
+            Debug.Log($"Luck: {playerLuck} / Target Rarity: {targetRarity} / Selected: {caughtFish.itemName}");
+            Debug.Log($"Resistance: {caughtFish.currentResistance} / Price: {caughtFish.currentPrice}");
+            return caughtFish;
         }
         else
         {
-            Debug.Log($"희귀도 {targetRarity} 범위를 가진 물고기가 없습니다! 기본 물고기를 줍니다.");
-            return allFish[0]; 
+            FishDataFormat defaultFish = allFish[0].Clone();
+            defaultFish.currentRarity = defaultFish.minRarity;
+            defaultFish.currentResistance = defaultFish.minResistance;
+            defaultFish.currentPrice = defaultFish.minPrice; 
+
+            return defaultFish;
         }
     }
 }
