@@ -497,48 +497,7 @@ MonoBehaviour:
   audioSource: {fileID: 989108714}
   countdownAudio: {fileID: 8300000, guid: 6f93ec49a576b4847b21bd5b2cab5691, type: 3}
   startAudio: {fileID: 8300000, guid: 4de83308ab64a514eaf6c62dca8e69c8, type: 3}
-  difficultyCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -0.0006215009
-      value: 1.5057373
-      inSlope: 4.405564
-      outSlope: 4.405564
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.08304496
-    - serializedVersion: 3
-      time: 0.6668191
-      value: 3.0146375
-      inSlope: 5.457098
-      outSlope: 5.457098
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.86755204
-      value: 4.952456
-      inSlope: 7.8465266
-      outSlope: 7.8465266
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0010986
-      value: 10.016663
-      inSlope: 11.585592
-      outSlope: 11.585592
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.051502943
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  playerData: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
   scorePrefabs:
   - {fileID: 2140944320644201908, guid: 0ff3301dba6e5e54aa483a74e7aa8f52, type: 3}
   - {fileID: 5105736261436439789, guid: a4cdf2e8aabe9b047b99ba79c9b4133d, type: 3}

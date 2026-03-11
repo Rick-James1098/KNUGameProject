@@ -1,7 +1,6 @@
 using System.Runtime.Serialization;
 using UnityEngine;
 using System.Collections;
-using NUnit.Framework;
 
 public class HarpoonGimicManager : MonoBehaviour
 {

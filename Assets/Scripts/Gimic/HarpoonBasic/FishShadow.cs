@@ -1,16 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class FishShadow : MonoBehaviour
 {
+    public PlayerData playerData;
     private PolygonCollider2D moveArea;
     private Vector3 targetPosition;
     public bool catchable = false;
     [Header("Moving Settings")]
-    public float speed = 30f;
+    private float speed = 30f;
     public float moveDurationMin = 2.0f; // 최소 이만큼은 움직이다가 멈춤
     public float moveDurationMax = 5.0f; // 최대 이만큼 움직이다가 멈춤
-    public float stopDuration = 1.0f;
+    private float stopDuration = 2.0f;
 
     [Header("Visuals")]
     public SpriteRenderer spriteRenderer; // 물고기 이미지를 보여주는 컴포넌트
@@ -31,6 +33,15 @@ public class FishShadow : MonoBehaviour
 
     public void Setup(PolygonCollider2D area)
     {   
+        float rawResistance = 50; //playerData.hookedFish.currentResistance;
+        float calculatedDifficulty = rawResistance - (playerData.technic + playerData.harpoonSkill + playerData.dopingTechnic);
+        calculatedDifficulty = 0; //Mathf.Clamp(calculatedDifficulty, 0f, 110f);
+        
+        float difficultyPercent = calculatedDifficulty / 110f;
+        difficultyPercent = Mathf.Clamp01(difficultyPercent);
+        speed = Mathf.Lerp(8f, 20f, difficultyPercent);
+        stopDuration =  Mathf.Lerp(0.8f, 0.3f, difficultyPercent);
+        Debug.Log($"speed: {speed} / stopDuration: {stopDuration}");
         moveArea = area;
         SetNewRandomTarget();
         StartCoroutine(RoamRoutine());
@@ -40,7 +51,7 @@ public class FishShadow : MonoBehaviour
     {
         while (true) // 무한 반복 (게임 끝날 때까지)
         {
-            float roamingTime = Random.Range(moveDurationMin, moveDurationMax);
+            float roamingTime = UnityEngine.Random.Range(moveDurationMin, moveDurationMax);
             float currentTimer = 0f;
 
             // 정해진 시간이 될 때까지 계속 움직임
@@ -100,8 +111,8 @@ public class FishShadow : MonoBehaviour
         
         while (attempts < 100)
         {
-            float x = Random.Range(moveArea.bounds.min.x, moveArea.bounds.max.x);
-            float y = Random.Range(moveArea.bounds.min.y, moveArea.bounds.max.y);
+            float x = UnityEngine.Random.Range(moveArea.bounds.min.x, moveArea.bounds.max.x);
+            float y = UnityEngine.Random.Range(moveArea.bounds.min.y, moveArea.bounds.max.y);
             Vector2 p = new Vector2(x, y);
 
             if (moveArea.OverlapPoint(p))

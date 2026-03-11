@@ -184,11 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dbc70992f10540808469ef4eba2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishShadow
+  playerData: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
   catchable: 0
-  speed: 5
   moveDurationMin: 2
-  moveDurationMax: 6
-  stopDuration: 2
+  moveDurationMax: 5
   spriteRenderer: {fileID: 1707415888756474248}
   leftSprite: {fileID: -1263593645629870729, guid: f6c3e04b20a4870478e0c534e167e7b5, type: 3}
   rightSprite: {fileID: -5032203694495562400, guid: 88cb2879d2db7c04592aefcbb24ca140, type: 3}

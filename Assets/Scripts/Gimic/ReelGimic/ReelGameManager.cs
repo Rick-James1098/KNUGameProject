@@ -60,8 +60,8 @@ public class NewFishingGame : MonoBehaviour
         
         float rawResistance = playerData.hookedFish.currentResistance;
         float calculatedDifficulty = rawResistance - (playerData.technic + playerData.rodSkill);
-        calculatedDifficulty = 150; //Mathf.Max(0f, calculatedDifficulty);
-        difficultyPercent = calculatedDifficulty / 340f;
+        calculatedDifficulty = 90; //Mathf.Max(0f, calculatedDifficulty);
+        difficultyPercent = calculatedDifficulty / 110f;
         difficultyPercent = Mathf.Clamp01(difficultyPercent);
 
         resistance = Mathf.Lerp(1.0f, 4.0f, difficultyPercent);

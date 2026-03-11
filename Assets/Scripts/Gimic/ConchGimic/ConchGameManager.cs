@@ -80,9 +80,9 @@ public class ConchGameManager : MonoBehaviour
     {   
         float rawResistance = 50; //playerData.hookedFish.currentResistance;
         float calculatedDifficulty = rawResistance - (playerData.technic + playerData.conchSkill + playerData.dopingTechnic);
-        calculatedDifficulty = 135;//Mathf.Clamp(calculatedDifficulty, 0f, 340f);
+        calculatedDifficulty = 90;//Mathf.Clamp(calculatedDifficulty, 0f, 110f);
 
-        float difficultyPercent = calculatedDifficulty / 340f;
+        float difficultyPercent = calculatedDifficulty / 110f;
         difficulty = Mathf.Lerp(1.5f, 10f, difficultyPercent);
         targetCount = (float)Truncate(UnityEngine.Random.Range(10f, 20f));
         currentTime = (0.029f * difficulty * difficulty + 1f) * targetCount;

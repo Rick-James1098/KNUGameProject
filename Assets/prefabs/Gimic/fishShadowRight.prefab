@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishShadow
   catchable: 0
-  speed: 15
+  speed: 100
   moveDurationMin: 2
   moveDurationMax: 6
   stopDuration: 3

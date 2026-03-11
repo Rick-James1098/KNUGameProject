@@ -6,7 +6,7 @@ public class StackGauge : MonoBehaviour
 {
     private HarpoonGimicManager gameManager; // 매니저에게 보고하기 위한 변수
     private Harpoon harpoon;
-
+    public PlayerData playerData;
     private bool isCharging = true;
 
     [Header("UI Objects")]
@@ -21,6 +21,7 @@ public class StackGauge : MonoBehaviour
     [Header("Target System")]
     private float targetMinAmount; // 목표 구간 최소값 (0.0 ~ 1.0)
     private float targetMaxAmount; // 목표 구간 최대값 (0.0 ~ 1.0)
+    private float rangeSize;
 
     [Header("Layout Settings")]
     private float gaugeHeight = 877.5f; // 게이지바 전체 높이 (UI RectTransform 높이와 맞춰주세요)
@@ -31,8 +32,6 @@ public class StackGauge : MonoBehaviour
 
     public void SetRandomTarget()
     {
-        float rangeSize = UnityEngine.Random.Range(0.01f, 0.1f);
-
         // 목표 구간의 시작점 결정 (0.3 ~ 0.8 사이에서 랜덤)
         targetMinAmount = UnityEngine.Random.Range(0.3f, 0.8f - rangeSize);
         targetMaxAmount = targetMinAmount + rangeSize;
@@ -60,7 +59,14 @@ public class StackGauge : MonoBehaviour
         this.harpoon = harpoonCtrl;
         this.gameManager = manager;
         
-        fillSpeed = UnityEngine.Random.Range(0.5f, 3f);
+        float rawResistance = 50; //playerData.hookedFish.currentResistance;
+        float calculatedDifficulty = rawResistance - (playerData.technic + playerData.harpoonSkill + playerData.dopingTechnic);
+        calculatedDifficulty = 90; //Mathf.Clamp(calculatedDifficulty, 0f, 110f);
+        
+        float difficultyPercent = calculatedDifficulty / 110f;
+        difficultyPercent = Mathf.Clamp01(difficultyPercent);
+        rangeSize = Mathf.Lerp(0.1f, 0.01f, difficultyPercent);
+        fillSpeed = Mathf.Lerp(0.5f, 2f, difficultyPercent);
     }
     void Update()
     {
