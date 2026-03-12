@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 4662404557775443404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.839, y: 1, z: 0}
+  m_LocalPosition: {x: -0.657, y: 1.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1221464139363409480
 Transform:
   m_ObjectHideFlags: 0
@@ -503,13 +503,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5609596581623429115}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.536, y: 0.128, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.041274115, w: 0.9991479}
+  m_LocalPosition: {x: -0.028, y: 0.596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6427116759934437036}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -4.731}
 --- !u!212 &4876966531977840537
 SpriteRenderer:
   serializedVersion: 2
@@ -942,6 +942,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: e398ef0b35d62dd49bf2bb69feb4d941, type: 2}
     - target: {fileID: 3626916397498700004, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8421880982255476410, guid: 7787925011ed9ac458ab73cdd5832708, type: 3}
+    - target: {fileID: 3626916397498700004, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}
       propertyPath: m_SortingLayer
       value: 5
       objectReference: {fileID: 0}
@@ -1031,6 +1035,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4132469192896991757}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8422395417753471960}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}
 --- !u!1 &6114848343263653577 stripped
 GameObject:
@@ -1143,6 +1150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDownBobber
   data: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
+  fishSelector: {fileID: 0}
   rodTip: {fileID: 2537506482071067794}
   bobberPrefab: {fileID: 7491904324101819620, guid: b0b1217c7f8532c419be30f1014f3e0a, type: 3}
   throwPoint: {fileID: 2144908032269301739}
@@ -1179,6 +1187,23 @@ MonoBehaviour:
   arcVisual: {fileID: 3961793573421989012}
   pointerCircle: {fileID: 5264453280606744675}
   timeLimit: 1
+  arcDistance: 1
+  sideOffset: 1
+  jumpHeight: 1
+  landOffset: 0.2
+--- !u!210 &8422395417753471960
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114848343263653577}
+  m_Enabled: 1
+  m_SortingLayerID: -535263543
+  m_SortingLayer: 5
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!4 &6427116759934437036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 558879190fe4e5a44860ca9830044d7a, type: 3}
