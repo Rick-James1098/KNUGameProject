@@ -801,13 +801,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ab99854dbf0394085bd721a36d82ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StackGauge
+  playerData: {fileID: 11400000, guid: 18212cfcab01ccd42abf576796a226d0, type: 2}
   gaugeImage: {fileID: 427397942}
   targetLineMin: {fileID: 75540259}
   targetLineMax: {fileID: 1032416}
   fillSpeed: 0.5
   audioSource: {fileID: 963678532}
-  successAudio: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
-  failAudio: {fileID: 8300000, guid: 881e3f52c86c94f26a60718d35627cd8, type: 3}
 --- !u!82 &963678532
 AudioSource:
   m_ObjectHideFlags: 0
